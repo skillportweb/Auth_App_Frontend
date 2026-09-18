@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import {
   ArrowRight,
@@ -32,23 +32,6 @@ const containerVariants: Variants = {
 
     transition: {
       staggerChildren: 0.1,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 25,
-  },
-
-  visible: {
-    opacity: 1,
-    y: 0,
-
-    transition: {
-      duration: 0.55,
-      ease: [0.22, 1, 0.36, 1],
     },
   },
 };

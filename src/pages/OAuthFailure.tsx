@@ -1,5 +1,3 @@
-import React from 'react'
-
 const OAuthFailure = () => {
   return (
     <div className='p-10 flex justify-center item-center'>

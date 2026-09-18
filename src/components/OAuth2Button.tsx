@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 
 const BACKEND_URL = "http://localhost:8083";

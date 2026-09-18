@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { NavLink, useNavigate } from "react-router";
 import { Moon, Sun } from "lucide-react";
