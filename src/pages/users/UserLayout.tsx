@@ -1,5 +1,5 @@
 import useAuth from '@/auth/store'
-import { Navigate, Outlet } from 'react-router'
+import { Navigate, Outlet } from 'react-router-dom'
 
 const UserLayout = () => {
   const checkLogin = useAuth((state) => state.checkLogin)

@@ -3,7 +3,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { refreshToken } from '@/services/AuthServices';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const OAuthSeccess = () => {
   const changeLocalLoginData = useAuth(

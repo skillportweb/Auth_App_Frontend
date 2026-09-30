@@ -1,10 +1,50 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { NavLink, useNavigate } from "react-router";
-import { Moon, Sun } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Moon, Sun, LogOut, User as UserIcon } from "lucide-react";
 
 import { Button } from "./ui/button";
 import useAuth from "@/auth/store";
+
+const BRAND_NAME = "Dry Fruit Store";
+
+/* ================= NAV LINK ================= */
+
+const NavItem = ({
+  to,
+  label,
+}: {
+  to: string;
+  label: string;
+}) => (
+  <NavLink to={to} end>
+    {({ isActive }) => (
+      <motion.span
+        whileHover={{ y: -1 }}
+        transition={{ duration: 0.2 }}
+        className={`relative cursor-pointer text-sm transition-colors ${
+          isActive
+            ? "font-semibold text-orange-600 dark:text-orange-400"
+            : "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+        }`}
+      >
+        {label}
+
+        {isActive && (
+          <motion.span
+            layoutId="navbar-active"
+            className="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-gradient-to-r from-amber-500 to-orange-500"
+            transition={{
+              type: "spring",
+              stiffness: 500,
+              damping: 30,
+            }}
+          />
+        )}
+      </motion.span>
+    )}
+  </NavLink>
+);
 
 const Navbar = () => {
   const checkLogin = useAuth((state) => state.checkLogin);
@@ -14,14 +54,14 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const [isDark, setIsDark] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const menuRef = useRef<HTMLDivElement>(null);
 
   /* ================= THEME ================= */
 
   useEffect(() => {
-    const darkMode =
-      document.documentElement.classList.contains("dark");
-
-    setIsDark(darkMode);
+    setIsDark(document.documentElement.classList.contains("dark"));
   }, []);
 
   const toggleTheme = () => {
@@ -38,7 +78,47 @@ const Navbar = () => {
     }
   };
 
+  /* ================= CLOSE DROPDOWN ================= */
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleClick = (e: MouseEvent) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target as Node)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClick);
+    document.addEventListener("keydown", handleKey);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("keydown", handleKey);
+    };
+  }, [menuOpen]);
+
   const isLoggedIn = checkLogin();
+
+  const initial =
+    user?.name?.trim()?.charAt(0)?.toUpperCase() || "U";
+
+  /* ================= LOGOUT ================= */
+
+  const handleLogout = () => {
+    setMenuOpen(false);
+    logout();
+    navigate("/");
+  };
 
   return (
     <motion.nav
@@ -53,26 +133,20 @@ const Navbar = () => {
         h-14
         border-b
         border-gray-200
-        bg-white/90
+        bg-white/80
         text-gray-900
+        shadow-sm
         backdrop-blur-xl
         transition-colors duration-300
         dark:border-white/10
-        dark:bg-[#08090b]/90
+        dark:bg-gray-950/80
         dark:text-white
       "
     >
-      <div
-        className="
-          container mx-auto
-          flex h-full
-          items-center
-          justify-between
-          px-4
-          sm:px-6
-          lg:px-8
-        "
-      >
+      {/* Thin gradient accent line */}
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500" />
+
+      <div className="container mx-auto flex h-full items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* ================= LOGO ================= */}
 
         <NavLink to="/dashboard">
@@ -86,88 +160,38 @@ const Navbar = () => {
                 rotate: 8,
                 scale: 1.08,
               }}
-              whileTap={{
-                scale: 0.95,
-              }}
+              whileTap={{ scale: 0.95 }}
               className="
-                flex h-7 w-7
+                flex h-8 w-8
                 items-center justify-center
-                rounded-md
-                bg-gradient-to-r
-                from-purple-600
-                to-blue-500
-                text-sm
-                font-bold
-                text-white
-                shadow-sm
-                shadow-purple-500/20
+                rounded-xl
+                bg-gradient-to-br
+                from-amber-500
+                via-orange-500
+                to-rose-500
+                text-base
+                shadow-md
+                shadow-orange-500/30
               "
             >
-              A
+              🥜
             </motion.span>
 
-            <span
-              className="
-                text-base
-                tracking-tight
-                text-gray-900
-                dark:text-white
-              "
-            >
-              Auth App
+            <span className="text-base font-bold tracking-tight text-gray-900 dark:text-white">
+              {BRAND_NAME}
             </span>
           </motion.div>
         </NavLink>
 
-        {/* ================= NAVIGATION ================= */}
+        {/* ================= RIGHT SIDE ================= */}
 
-        <div className="flex items-center gap-3 sm:gap-5">
-
-          {/* ================= HOME ================= */}
-
+        <div className="flex items-center gap-3 sm:gap-4">
+          {/* Home link when logged out */}
           {!isLoggedIn && (
-            <NavLink to="/">
-              {({ isActive }) => (
-                <motion.span
-                  whileHover={{ y: -1 }}
-                  transition={{ duration: 0.2 }}
-                  className={`
-                    relative
-                    cursor-pointer
-                    text-sm
-                    transition-colors
-                    ${
-                      isActive
-                        ? "font-medium text-purple-600 dark:text-purple-400"
-                        : "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                    }
-                  `}
-                >
-                  Home
-
-                  {isActive && (
-                    <motion.span
-                      layoutId="navbar-active"
-                      className="
-                        absolute
-                        -bottom-1
-                        left-0
-                        h-0.5
-                        w-full
-                        rounded-full
-                        bg-purple-600
-                        dark:bg-purple-400
-                      "
-                      transition={{
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                </motion.span>
-              )}
-            </NavLink>
+            <NavItem
+              to="/"
+              label="Home"
+            />
           )}
 
           {/* ================= THEME BUTTON ================= */}
@@ -184,14 +208,16 @@ const Navbar = () => {
                 h-9
                 w-9
                 cursor-pointer
-                rounded-lg
-                border-gray-300
+                rounded-xl
+                border-gray-200
                 bg-white
                 text-gray-700
                 transition-all duration-200
-                hover:bg-gray-100
-                dark:border-gray-700
-                dark:bg-transparent
+                hover:border-orange-300
+                hover:bg-orange-50
+                hover:text-orange-600
+                dark:border-gray-800
+                dark:bg-gray-900
                 dark:text-gray-200
                 dark:hover:bg-white/10
               "
@@ -205,54 +231,154 @@ const Navbar = () => {
             </Button>
           </motion.div>
 
+          {/* ================= LOGGED IN ================= */}
+
           {isLoggedIn ? (
             <>
-              {/* ================= LOGGED IN ================= */}
-
-              <NavLink
-                to="/dashboard/profile"
+              {/* User name */}
+              <span
                 className="
+                  hidden
+                  max-w-[140px]
+                  truncate
                   text-sm
                   font-medium
                   text-gray-700
-                  transition-colors
-                  hover:text-purple-600
                   dark:text-gray-200
-                  dark:hover:text-purple-400
+                  sm:block
                 "
               >
                 {user?.name}
-              </NavLink>
+              </span>
 
-              {/* ================= LOGOUT ================= */}
-
-              <Button
-                variant="outline"
-                onClick={() => {
-                  logout();
-                  navigate("/");
-                }}
-                className="
-                  h-9
-                  cursor-pointer
-                  rounded-lg
-                  border-gray-300
-                  bg-white
-                  px-4
-                  text-sm
-                  text-gray-800
-                  transition-all duration-200
-                  hover:border-gray-400
-                  hover:bg-gray-100
-                  dark:border-gray-700
-                  dark:bg-transparent
-                  dark:text-white
-                  dark:hover:border-gray-600
-                  dark:hover:bg-white/10
-                "
+              {/* User image + dropdown */}
+              <div
+                ref={menuRef}
+                className="relative"
               >
-                Logout
-              </Button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() =>
+                    setMenuOpen((prev) => !prev)
+                  }
+                  aria-label="Open user menu"
+                  aria-haspopup="menu"
+                  aria-expanded={menuOpen}
+                  className={`
+                    flex h-9 w-9
+                    cursor-pointer
+                    items-center justify-center
+                    rounded-full
+                    bg-gradient-to-br
+                    from-amber-500
+                    to-orange-600
+                    text-sm
+                    font-bold
+                    text-white
+                    shadow-md
+                    shadow-orange-500/30
+                    outline-none
+                    ring-2
+                    ring-offset-2
+                    ring-offset-white
+                    transition-all
+                    dark:ring-offset-gray-950
+                    ${
+                      menuOpen
+                        ? "ring-orange-400"
+                        : "ring-transparent"
+                    }
+                  `}
+                >
+                  {initial}
+                </motion.button>
+
+                <AnimatePresence>
+                  {menuOpen && (
+                    <motion.div
+                      role="menu"
+                      initial={{
+                        opacity: 0,
+                        y: -8,
+                        scale: 0.96,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                      }}
+                      exit={{
+                        opacity: 0,
+                        y: -8,
+                        scale: 0.96,
+                      }}
+                      transition={{ duration: 0.15 }}
+                      className="
+                        absolute right-0 top-12
+                        w-48
+                        origin-top-right
+                        overflow-hidden
+                        rounded-2xl
+                        border
+                        border-gray-200
+                        bg-white
+                        p-2
+                        shadow-xl
+                        dark:border-gray-800
+                        dark:bg-gray-900
+                      "
+                    >
+                      {/* Profile */}
+                      <NavLink
+                        to="/dashboard/profile"
+                        onClick={() => setMenuOpen(false)}
+                        role="menuitem"
+                        className="
+                          flex w-full items-center gap-2
+                          rounded-xl
+                          px-3 py-2.5
+                          text-sm
+                          font-medium
+                          text-gray-700
+                          transition-colors
+                          hover:bg-orange-50
+                          hover:text-orange-600
+                          dark:text-gray-200
+                          dark:hover:bg-orange-500/10
+                          dark:hover:text-orange-400
+                        "
+                      >
+                        <UserIcon className="h-4 w-4" />
+                        Profile
+                      </NavLink>
+
+                      {/* Logout */}
+                      <button
+                        onClick={handleLogout}
+                        role="menuitem"
+                        className="
+                          flex w-full cursor-pointer items-center gap-2
+                          rounded-xl
+                          px-3 py-2.5
+                          text-sm
+                          font-medium
+                          text-gray-700
+                          transition-colors
+                          hover:bg-red-50
+                          hover:text-red-600
+                          dark:text-gray-200
+                          dark:hover:bg-red-500/10
+                          dark:hover:text-red-400
+                        "
+                      >
+                        <LogOut className="h-4 w-4" />
+                        Logout
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </>
           ) : (
             <>
@@ -264,28 +390,26 @@ const Navbar = () => {
                     scale: 1.04,
                     y: -1,
                   }}
-                  whileTap={{
-                    scale: 0.96,
-                  }}
+                  whileTap={{ scale: 0.96 }}
                 >
                   <Button
                     variant="outline"
                     className="
                       h-9
                       cursor-pointer
-                      rounded-lg
-                      border-gray-300
+                      rounded-xl
+                      border-gray-200
                       bg-white
                       px-4
                       text-sm
                       text-gray-800
                       transition-all duration-200
-                      hover:border-gray-400
-                      hover:bg-gray-100
-                      dark:border-gray-700
-                      dark:bg-transparent
+                      hover:border-orange-300
+                      hover:bg-orange-50
+                      hover:text-orange-600
+                      dark:border-gray-800
+                      dark:bg-gray-900
                       dark:text-white
-                      dark:hover:border-gray-600
                       dark:hover:bg-white/10
                     "
                   >
@@ -302,28 +426,26 @@ const Navbar = () => {
                     scale: 1.04,
                     y: -1,
                   }}
-                  whileTap={{
-                    scale: 0.96,
-                  }}
+                  whileTap={{ scale: 0.96 }}
                 >
                   <Button
                     className="
                       h-9
                       cursor-pointer
-                      rounded-lg
-                      border-gray-300
-                      bg-white
+                      rounded-xl
+                      border-0
+                      bg-gradient-to-r
+                      from-amber-500
+                      to-orange-500
                       px-4
                       text-sm
-                      text-gray-800
+                      font-semibold
+                      text-white
+                      shadow-md
+                      shadow-orange-500/30
                       transition-all duration-200
-                      hover:border-gray-400
-                      hover:bg-gray-100
-                      dark:border-gray-700
-                      dark:bg-transparent
-                      dark:text-white
-                      dark:hover:border-gray-600
-                      dark:hover:bg-white/10
+                      hover:from-amber-600
+                      hover:to-orange-600
                     "
                   >
                     Signup
