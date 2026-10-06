@@ -116,13 +116,13 @@ export default function AdminDashboard() {
 
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          {/* Main Heading - 24px */}
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+          {/* Main Heading - Categories: 28px / 34px */}
+          <h1 className="text-[28px] font-bold tracking-tight text-gray-900 dark:text-white sm:text-[34px]">
             Dashboard
           </h1>
 
-          {/* Normal Text - 14px */}
-          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          {/* Normal Text - Categories: 12px */}
+          <p className="mt-1 text-[12px] text-gray-500 dark:text-gray-400">
             Welcome back! Here's what's happening with your store today.
           </p>
         </div>
@@ -133,7 +133,7 @@ export default function AdminDashboard() {
             rounded-xl
             bg-orange-500
             px-4 py-2.5
-            text-sm font-semibold text-white
+            text-[12px] font-semibold text-white
             shadow-lg shadow-orange-500/20
             transition
             hover:bg-orange-600
@@ -182,13 +182,13 @@ export default function AdminDashboard() {
                   <Icon size={22} />
                 </div>
 
-                {/* Status / Change - 12px */}
+                {/* Status / Change - Categories: 9px */}
                 <div
                   className={`
                     flex items-center gap-1
                     rounded-lg
                     px-2 py-1
-                    text-xs font-medium
+                    text-[9px] font-medium
                     ${
                       stat.positive
                         ? "bg-green-100 text-green-600 dark:bg-green-500/10 dark:text-green-400"
@@ -206,13 +206,13 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              {/* Normal Text - 14px */}
-              <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+              {/* Stats Title - Categories: 12px */}
+              <p className="mt-4 text-[12px] text-gray-500 dark:text-gray-400">
                 {stat.title}
               </p>
 
-              {/* Stats Value - 24px */}
-              <h2 className="mt-1 text-2xl font-bold text-gray-900 dark:text-white">
+              {/* Stats Value - Categories: 22px */}
+              <h2 className="mt-1 text-[22px] font-bold text-gray-900 dark:text-white">
                 {stat.value}
               </h2>
             </div>
@@ -241,13 +241,13 @@ export default function AdminDashboard() {
         >
           <div className="flex items-center justify-between">
             <div>
-              {/* Section Heading - 16px */}
-              <h2 className="text-base font-semibold text-gray-900 dark:text-white">
+              {/* Section Heading - Categories: 16px */}
+              <h2 className="text-[16px] font-semibold text-gray-900 dark:text-white">
                 Sales Overview
               </h2>
 
-              {/* Small Text - 12px */}
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
+              {/* Small Text - Categories: 10px */}
+              <p className="mt-1 text-[10px] text-gray-500 dark:text-gray-500">
                 Revenue performance for this month
               </p>
             </div>
@@ -259,7 +259,7 @@ export default function AdminDashboard() {
                 border-gray-200
                 bg-gray-50
                 px-3 py-2
-                text-xs
+                text-[12px]
                 text-gray-600
                 transition
                 hover:bg-gray-100
@@ -311,8 +311,8 @@ export default function AdminDashboard() {
               )}
             </div>
 
-            {/* Small Text - 12px */}
-            <div className="mt-3 flex justify-between px-2 text-xs text-gray-400">
+            {/* Small Text - Categories: 10px */}
+            <div className="mt-3 flex justify-between px-2 text-[10px] text-gray-400">
               <span>Jan</span>
               <span>Feb</span>
               <span>Mar</span>
@@ -346,13 +346,13 @@ export default function AdminDashboard() {
         >
           <div className="flex items-center justify-between">
             <div>
-              {/* Section Heading - 16px */}
-              <h2 className="text-base font-semibold text-gray-900 dark:text-white">
+              {/* Section Heading - Categories: 16px */}
+              <h2 className="text-[16px] font-semibold text-gray-900 dark:text-white">
                 Top Products
               </h2>
 
-              {/* Small Text - 12px */}
-              <p className="mt-1 text-xs text-gray-500">
+              {/* Small Text - Categories: 10px */}
+              <p className="mt-1 text-[10px] text-gray-500">
                 Best selling products
               </p>
             </div>
@@ -374,7 +374,7 @@ export default function AdminDashboard() {
                     items-center justify-center
                     rounded-lg
                     bg-orange-100
-                    text-sm font-bold
+                    text-[12px] font-bold
                     text-orange-600
                     dark:bg-orange-500/10
                     dark:text-orange-500
@@ -384,19 +384,19 @@ export default function AdminDashboard() {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  {/* Product Name - 14px */}
-                  <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                  {/* Product Name - Categories: 12px */}
+                  <p className="truncate text-[12px] font-medium text-gray-900 dark:text-white">
                     {product.name}
                   </p>
 
-                  {/* Small Text - 12px */}
-                  <p className="mt-0.5 text-xs text-gray-500">
+                  {/* Small Text - Categories: 10px */}
+                  <p className="mt-0.5 text-[10px] text-gray-500">
                     {product.category} • {product.sold} sold
                   </p>
                 </div>
 
-                {/* Price - 16px */}
-                <p className="text-base font-semibold text-gray-800 dark:text-gray-200">
+                {/* Price - Categories: 16px */}
+                <p className="text-[16px] font-semibold text-gray-800 dark:text-gray-200">
                   {product.revenue}
                 </p>
               </div>
@@ -422,22 +422,22 @@ export default function AdminDashboard() {
       >
         <div className="flex items-center justify-between">
           <div>
-            {/* Section Heading - 16px */}
-            <h2 className="text-base font-semibold text-gray-900 dark:text-white">
+            {/* Section Heading - Categories: 16px */}
+            <h2 className="text-[16px] font-semibold text-gray-900 dark:text-white">
               Recent Orders
             </h2>
 
-            {/* Small Text - 12px */}
-            <p className="mt-1 text-xs text-gray-500">
+            {/* Small Text - Categories: 10px */}
+            <p className="mt-1 text-[10px] text-gray-500">
               Latest orders from your customers
             </p>
           </div>
 
-          {/* Normal Text - 14px */}
+          {/* Normal Text - Categories: 12px */}
           <button
             className="
               flex items-center gap-1
-              text-sm font-medium
+              text-[12px] font-medium
               text-orange-500
               hover:text-orange-600
             "
@@ -451,24 +451,24 @@ export default function AdminDashboard() {
           <table className="w-full min-w-[700px]">
             <thead>
               <tr className="border-b border-gray-200 dark:border-gray-800">
-                {/* Small Text - 12px */}
-                <th className="pb-3 text-left text-xs font-medium text-gray-500">
+                {/* Table Heading - Categories: 10px */}
+                <th className="pb-3 text-left text-[10px] font-medium text-gray-500">
                   ORDER ID
                 </th>
 
-                <th className="pb-3 text-left text-xs font-medium text-gray-500">
+                <th className="pb-3 text-left text-[10px] font-medium text-gray-500">
                   CUSTOMER
                 </th>
 
-                <th className="pb-3 text-left text-xs font-medium text-gray-500">
+                <th className="pb-3 text-left text-[10px] font-medium text-gray-500">
                   PRODUCT
                 </th>
 
-                <th className="pb-3 text-left text-xs font-medium text-gray-500">
+                <th className="pb-3 text-left text-[10px] font-medium text-gray-500">
                   AMOUNT
                 </th>
 
-                <th className="pb-3 text-left text-xs font-medium text-gray-500">
+                <th className="pb-3 text-left text-[10px] font-medium text-gray-500">
                   STATUS
                 </th>
               </tr>
@@ -519,27 +519,25 @@ export default function AdminDashboard() {
                       dark:border-gray-800/70
                     "
                   >
-                    {/* Normal Text - 14px */}
-                    <td className="py-4 text-sm font-medium text-orange-500">
+                    {/* Table Content - Categories: 12px */}
+                    <td className="py-4 text-[12px] font-medium text-orange-500">
                       {order.id}
                     </td>
 
-                    {/* Normal Text - 14px */}
-                    <td className="py-4 text-sm text-gray-700 dark:text-gray-300">
+                    <td className="py-4 text-[12px] text-gray-700 dark:text-gray-300">
                       {order.customer}
                     </td>
 
-                    {/* Normal Text - 14px */}
-                    <td className="py-4 text-sm text-gray-500 dark:text-gray-400">
+                    <td className="py-4 text-[12px] text-gray-500 dark:text-gray-400">
                       {order.product}
                     </td>
 
-                    {/* Price - 16px */}
-                    <td className="py-4 text-base font-semibold text-gray-900 dark:text-white">
+                    {/* Price - Categories: 16px */}
+                    <td className="py-4 text-[16px] font-semibold text-gray-900 dark:text-white">
                       {order.amount}
                     </td>
 
-                    {/* Status - 12px */}
+                    {/* Status - Categories: 9px */}
                     <td className="py-4">
                       <span
                         className={`
@@ -547,7 +545,7 @@ export default function AdminDashboard() {
                           items-center gap-1.5
                           rounded-full
                           px-3 py-1.5
-                          text-xs font-medium
+                          text-[9px] font-medium
                           ${config.className}
                         `}
                       >

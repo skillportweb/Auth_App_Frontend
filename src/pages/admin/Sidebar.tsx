@@ -13,6 +13,7 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  ListTree,
 } from "lucide-react";
 
 import {
@@ -53,6 +54,11 @@ const Sidebar: React.FC<SidebarProps> = ({
       title: "Categories",
       icon: Tags,
       path: "/admin/categories",
+    },
+        {
+      title: "Sub Categories",
+      icon: ListTree,
+      path: "/admin/sub-categories",
     },
     {
       title: "Orders",

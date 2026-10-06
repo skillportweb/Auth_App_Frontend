@@ -29,6 +29,10 @@ import Products from "./pages/admin/Products.tsx";
 
 import useAuth from "@/auth/store";
 import AddProducts from "./pages/admin/forms/AddProducts.tsx";
+import Categories from "./pages/admin/Categories.tsx";
+import AddCategories from "./pages/admin/forms/AddCategories.tsx";
+import SubCategories from "./pages/admin/SubCategories.tsx";
+import AddSubCategories from "./pages/admin/forms/AddSubCategories.tsx";
 
 /* =========================================================
    ADMIN GUARD
@@ -166,6 +170,25 @@ createRoot(document.getElementById("root")!).render(
              <Route
               path="add-products"
               element={<AddProducts />}
+            />
+
+             <Route
+              path="categories"
+              element={<Categories />}
+            />
+            <Route
+              path="add-categories"
+              element={<AddCategories />}
+            />
+
+             <Route
+              path="sub-categories"
+              element={<SubCategories />}
+            />
+
+             <Route
+              path="add-sub-categories"
+              element={<AddSubCategories />}
             />
 
           </Route>
