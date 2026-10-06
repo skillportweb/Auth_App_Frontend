@@ -3,6 +3,8 @@ import "./index.css";
 
 import {
   BrowserRouter,
+  Navigate,
+  Outlet,
   Route,
   Routes,
 } from "react-router-dom";
@@ -21,51 +23,158 @@ import ProductDetails from "./pages/users/ProductDetails.tsx";
 import OAuthSeccess from "./pages/OAuthSeccess.tsx";
 import OAuthFailure from "./pages/OAuthFailure.tsx";
 
+import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
+import AdminLayout from "./pages/admin/AdminLayout.tsx";
+import Products from "./pages/admin/Products.tsx";
+
+import useAuth from "@/auth/store";
+import AddProducts from "./pages/admin/forms/AddProducts.tsx";
+
+/* =========================================================
+   ADMIN GUARD
+========================================================= */
+
+const AdminRoute = () => {
+  const user = useAuth((state) => state.user) as
+    | {
+        roles?: {
+          name: string;
+        }[];
+      }
+    | null;
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  const isAdmin = user.roles?.some(
+    (role) => role.name === "ROLE_ADMIN"
+  );
+
+  return isAdmin ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/dashboard" replace />
+  );
+};
+
+/* =========================================================
+   USER GUARD
+========================================================= */
+
+const UserRoute = () => {
+  const user = useAuth((state) => state.user) as
+    | {
+        roles?: {
+          name: string;
+        }[];
+      }
+    | null;
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  const isAdmin = user.roles?.some(
+    (role) => role.name === "ROLE_ADMIN"
+  );
+
+  return isAdmin ? (
+    <Navigate to="/admin" replace />
+  ) : (
+    <Outlet />
+  );
+};
+
+/* =========================================================
+   ROUTES
+========================================================= */
+
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <Routes>
 
-      {/* ================= ROOT ================= */}
+      {/* =================================================
+          ROOT
+      ================================================= */}
 
       <Route path="/" element={<RootLayout />}>
 
         {/* Home */}
         <Route index element={<App />} />
 
-        {/* Authentication */}
+        {/* =================================================
+            AUTHENTICATION
+        ================================================= */}
+
         <Route path="login" element={<Login />} />
+
         <Route path="signup" element={<Signup />} />
 
         {/* About */}
         <Route path="about" element={<About />} />
 
-        {/* ================= DASHBOARD ================= */}
+        {/* =================================================
+            USER ROUTES
+        ================================================= */}
 
-        <Route path="dashboard" element={<UserLayout />}>
+        <Route element={<UserRoute />}>
 
-          {/* /dashboard */}
+          {/* User Dashboard */}
+          <Route path="dashboard" element={<UserLayout />}>
+
+            {/* /dashboard */}
+            <Route index element={<UserHome />} />
+
+            {/* /dashboard/profile */}
+            <Route
+              path="profile"
+              element={<UserProfile />}
+            />
+
+          </Route>
+
+          {/* Product Details */}
           <Route
-            index
-            element={<UserHome />}
-          />
-
-          {/* /dashboard/profile */}
-          <Route
-            path="profile"
-            element={<UserProfile />}
+            path="user/product/:id"
+            element={<ProductDetails />}
           />
 
         </Route>
 
-        {/* ================= PRODUCT DETAILS ================= */}
+        {/* =================================================
+            ADMIN ROUTES
+        ================================================= */}
 
-        {/* /user/product/1 */}
-        <Route
-          path="user/product/:id"
-          element={<ProductDetails />}
-        />
+        <Route path="admin" element={<AdminRoute />}>
 
-        {/* ================= OAUTH ================= */}
+          {/* Admin Layout */}
+          <Route element={<AdminLayout />}>
+
+            {/* /admin */}
+            <Route
+              index
+              element={<AdminDashboard />}
+            />
+
+            {/* /admin/products */}
+            <Route
+              path="products"
+              element={<Products />}
+            />
+
+             <Route
+              path="add-products"
+              element={<AddProducts />}
+            />
+
+          </Route>
+
+        </Route>
+
+        {/* =================================================
+            OAUTH
+        ================================================= */}
 
         <Route
           path="oauth/success"

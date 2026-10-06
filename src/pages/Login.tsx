@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
@@ -82,56 +82,56 @@ function Login() {
     password: "",
   });
 
-const navigate = useNavigate();
-const login = useAuth((state) => state.login);
-const handleInputChange = (
-  event: React.ChangeEvent<HTMLInputElement>
-) => {
-  const { name, value } = event.target;
+  const navigate = useNavigate();
+  const login = useAuth((state) => state.login);
 
-  setLoginData((prevLoginData) => ({
-    ...prevLoginData,
-    [name]: value,
-  }));
-};
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
 
-const handleFormSubmit = async (
-  event: React.FormEvent<HTMLFormElement>
-) => {
-  event.preventDefault();
+    setLoginData((prevLoginData) => ({
+      ...prevLoginData,
+      [name]: value,
+    }));
+  };
 
-  const email = loginData.email.trim();
-  const password = loginData.password.trim();
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-  console.log("Login Data:", {
-    email,
-    password,
-  });
+    const email = loginData.email.trim();
+    const password = loginData.password.trim();
 
-  if (email === "") {
-    toast.error("Email is required !");
-    return;
-  }
+    if (email === "") {
+      toast.error("Email is required !");
+      return;
+    }
 
-  if (password === "") {
-    toast.error("Password is required !");
-    return;
-  }
-  console.log("Ready to login:", {
-    email,
-    password,
-  });
+    if (password === "") {
+      toast.error("Password is required !");
+      return;
+    }
 
-  try {
-    // await loginUser(loginData);
-    //use login : useAuth store to login
-    await login(loginData);
-    toast.success("Login successful !");
-    navigate("/dashboard");
-  } catch (error) {
-    toast.error("Invalid email or password !");
-  }
-};
+    try {
+      await login(loginData);
+
+      toast.success("Login successful !");
+
+      // login ke baad store se user nikalo (store change karne ki zaroorat nahi)
+      const user = useAuth.getState().user as
+        | { roles?: { name: string }[] }
+        | null;
+
+      const roles: string[] = user?.roles?.map((role) => role.name) ?? [];
+
+      if (roles.includes("ROLE_ADMIN")) {
+        navigate("/admin");
+      } else {
+        // ROLE_GUEST / ROLE_USER
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      toast.error("Invalid email or password !");
+    }
+  };
 
   return (
     <main
@@ -150,13 +150,11 @@ const handleFormSubmit = async (
         dark:text-white
       "
     >
-
       {/* ================================================= */}
       {/* ================= BACKGROUND ===================== */}
       {/* ================================================= */}
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-
         {/* Grid */}
 
         <div
@@ -262,7 +260,6 @@ const handleFormSubmit = async (
             ease: "easeInOut",
           }}
         />
-
       </div>
 
       {/* ================================================= */}
@@ -285,9 +282,7 @@ const handleFormSubmit = async (
           lg:px-8
         "
       >
-
         <div className="grid w-full items-center gap-12 lg:grid-cols-2">
-
           {/* ================================================= */}
           {/* ================= LEFT CONTENT ================== */}
           {/* ================================================= */}
@@ -298,7 +293,6 @@ const handleFormSubmit = async (
             variants={containerVariants}
             className="hidden lg:block"
           >
-
             {/* Badge */}
 
             <motion.div
@@ -325,7 +319,6 @@ const handleFormSubmit = async (
                 dark:text-purple-300
               "
             >
-
               <motion.div
                 animate={{
                   rotate: [0, 10, -10, 0],
@@ -340,10 +333,7 @@ const handleFormSubmit = async (
                 <Sparkles className="h-4 w-4" />
               </motion.div>
 
-              <span>
-                Secure Authentication
-              </span>
-
+              <span>Secure Authentication</span>
             </motion.div>
 
             {/* Heading */}
@@ -361,9 +351,7 @@ const handleFormSubmit = async (
               "
             >
               Welcome
-
               <br />
-
               <motion.span
                 className="
                   inline-block
@@ -379,11 +367,7 @@ const handleFormSubmit = async (
                   dark:to-blue-400
                 "
                 animate={{
-                  backgroundPosition: [
-                    "0% 50%",
-                    "100% 50%",
-                    "0% 50%",
-                  ],
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                 }}
                 transition={{
                   duration: 5,
@@ -413,8 +397,8 @@ const handleFormSubmit = async (
                 dark:text-gray-400
               "
             >
-              Sign in to your account and continue your journey
-              with a secure and modern authentication experience.
+              Sign in to your account and continue your journey with a secure
+              and modern authentication experience.
             </motion.p>
 
             {/* Security */}
@@ -423,7 +407,6 @@ const handleFormSubmit = async (
               variants={fadeLeft}
               className="mt-10 flex items-center gap-4"
             >
-
               <motion.div
                 whileHover={{
                   scale: 1.1,
@@ -458,7 +441,6 @@ const handleFormSubmit = async (
               </motion.div>
 
               <div>
-
                 <p
                   className="
                     text-sm
@@ -475,11 +457,8 @@ const handleFormSubmit = async (
                 <p className="mt-1 text-xs text-gray-500">
                   Your credentials are protected with modern security.
                 </p>
-
               </div>
-
             </motion.div>
-
           </motion.div>
 
           {/* ================================================= */}
@@ -492,7 +471,6 @@ const handleFormSubmit = async (
             variants={fadeRight}
             className="mx-auto w-full max-w-md"
           >
-
             {/* Login Card */}
 
             <motion.div
@@ -524,7 +502,6 @@ const handleFormSubmit = async (
                 duration: 0.25,
               }}
             >
-
               {/* Card Glow */}
 
               <motion.div
@@ -552,7 +529,6 @@ const handleFormSubmit = async (
               />
 
               <div className="relative">
-
                 {/* Lock Icon */}
 
                 <motion.div
@@ -620,20 +596,15 @@ const handleFormSubmit = async (
                   Enter your email and password to continue.
                 </p>
 
-                {/* ================================================= */}
-                {/* ================= SOCIAL LOGIN ================== */}
-                {/* ================================================= */}
+                {/* ================= SOCIAL LOGIN ================= */}
 
                 <div className="mt-7">
                   <OAuth2Button />
                 </div>
 
-                {/* ================================================= */}
-                {/* ================= DIVIDER ======================== */}
-                {/* ================================================= */}
+                {/* ================= DIVIDER ================= */}
 
                 <div className="my-7 flex items-center gap-3">
-
                   <div
                     className="
                       h-px
@@ -667,22 +638,14 @@ const handleFormSubmit = async (
                       dark:bg-white/10
                     "
                   />
-
                 </div>
 
-                {/* ================================================= */}
-                {/* ================= FORM =========================== */}
-                {/* ================================================= */}
+                {/* ================= FORM ================= */}
 
-                <form
-                  onSubmit={handleFormSubmit}
-                  className="space-y-5"
-                >
-
+                <form onSubmit={handleFormSubmit} className="space-y-5">
                   {/* ================= EMAIL ================= */}
 
                   <div className="space-y-2">
-
                     <Label
                       htmlFor="email"
                       className="
@@ -698,7 +661,6 @@ const handleFormSubmit = async (
                     </Label>
 
                     <div className="relative">
-
                       <Mail
                         className="
                           pointer-events-none
@@ -755,17 +717,13 @@ const handleFormSubmit = async (
                           dark:focus:border-purple-500
                         "
                       />
-
                     </div>
-
                   </div>
 
                   {/* ================= PASSWORD ================= */}
 
                   <div className="space-y-2">
-
                     <div className="flex items-center justify-between">
-
                       <Label
                         htmlFor="password"
                         className="
@@ -796,11 +754,9 @@ const handleFormSubmit = async (
                       >
                         Forgot password?
                       </Link>
-
                     </div>
 
                     <div className="relative">
-
                       <LockKeyhole
                         className="
                           pointer-events-none
@@ -820,11 +776,7 @@ const handleFormSubmit = async (
                         name="password"
                         value={loginData.password}
                         onChange={handleInputChange}
-                        type={
-                          showPassword
-                            ? "text"
-                            : "password"
-                        }
+                        type={showPassword ? "text" : "password"}
                         placeholder="Enter your password"
                         autoComplete="current-password"
                         className="
@@ -866,11 +818,7 @@ const handleFormSubmit = async (
 
                       <button
                         type="button"
-                        onClick={() =>
-                          setShowPassword(
-                            (prev) => !prev
-                          )
-                        }
+                        onClick={() => setShowPassword((prev) => !prev)}
                         className="
                           absolute
                           right-3
@@ -886,9 +834,7 @@ const handleFormSubmit = async (
                           dark:hover:text-white
                         "
                         aria-label={
-                          showPassword
-                            ? "Hide password"
-                            : "Show password"
+                          showPassword ? "Hide password" : "Show password"
                         }
                       >
                         {showPassword ? (
@@ -897,15 +843,12 @@ const handleFormSubmit = async (
                           <Eye className="h-4 w-4" />
                         )}
                       </button>
-
                     </div>
-
                   </div>
 
                   {/* ================= REMEMBER ME ================= */}
 
                   <div className="flex items-center gap-2">
-
                     <input
                       id="remember"
                       type="checkbox"
@@ -935,7 +878,6 @@ const handleFormSubmit = async (
                     >
                       Remember me
                     </Label>
-
                   </div>
 
                   {/* ================= LOGIN BUTTON ================= */}
@@ -949,7 +891,6 @@ const handleFormSubmit = async (
                       scale: 0.97,
                     }}
                   >
-
                     <Button
                       type="submit"
                       className="
@@ -972,7 +913,6 @@ const handleFormSubmit = async (
                       "
                     >
                       Sign in
-
                       <ArrowRight
                         className="
                           ml-2
@@ -984,11 +924,8 @@ const handleFormSubmit = async (
                           group-hover:translate-x-1
                         "
                       />
-
                     </Button>
-
                   </motion.div>
-
                 </form>
 
                 {/* ================= SIGNUP ================= */}
@@ -1005,7 +942,6 @@ const handleFormSubmit = async (
                   "
                 >
                   Don't have an account?{" "}
-
                   <Link
                     to="/signup"
                     className="
@@ -1021,16 +957,11 @@ const handleFormSubmit = async (
                   >
                     Create account
                   </Link>
-
                 </p>
-
               </div>
-
             </motion.div>
 
-            {/* ================================================= */}
             {/* ================= SECURITY TEXT ================= */}
-            {/* ================================================= */}
 
             <motion.div
               initial={{
@@ -1056,7 +987,6 @@ const handleFormSubmit = async (
                 text-gray-400
               "
             >
-
               <ShieldCheck
                 className="
                   h-3.5
@@ -1065,18 +995,11 @@ const handleFormSubmit = async (
                 "
               />
 
-              <span>
-                Secure and encrypted authentication
-              </span>
-
+              <span>Secure and encrypted authentication</span>
             </motion.div>
-
           </motion.div>
-
         </div>
-
       </div>
-
     </main>
   );
 }
