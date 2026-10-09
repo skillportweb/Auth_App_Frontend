@@ -33,6 +33,15 @@ import Categories from "./pages/admin/Categories.tsx";
 import AddCategories from "./pages/admin/forms/AddCategories.tsx";
 import SubCategories from "./pages/admin/SubCategories.tsx";
 import AddSubCategories from "./pages/admin/forms/AddSubCategories.tsx";
+import Orders from "./pages/admin/Orders.tsx";
+import Customers from "./pages/admin/Customers.tsx";
+import Reviews from "./pages/admin/Reviews.tsx";
+import Coupons from "./pages/admin/Coupons.tsx";
+import Inventory from "./pages/admin/Inventory.tsx";
+import Analytics from "./pages/admin/Analytics.jsx";
+import Settings from "./pages/admin/Settings.tsx";
+import OrderDetails from "./pages/admin/OrderDetails.tsx";
+import AddCoupons from "./pages/admin/forms/AddCoupons.tsx";
 
 /* =========================================================
    ADMIN GUARD
@@ -41,10 +50,10 @@ import AddSubCategories from "./pages/admin/forms/AddSubCategories.tsx";
 const AdminRoute = () => {
   const user = useAuth((state) => state.user) as
     | {
-        roles?: {
-          name: string;
-        }[];
-      }
+      roles?: {
+        name: string;
+      }[];
+    }
     | null;
 
   if (!user) {
@@ -69,10 +78,10 @@ const AdminRoute = () => {
 const UserRoute = () => {
   const user = useAuth((state) => state.user) as
     | {
-        roles?: {
-          name: string;
-        }[];
-      }
+      roles?: {
+        name: string;
+      }[];
+    }
     | null;
 
   if (!user) {
@@ -160,6 +169,7 @@ createRoot(document.getElementById("root")!).render(
               index
               element={<AdminDashboard />}
             />
+            
 
             {/* /admin/products */}
             <Route
@@ -167,12 +177,12 @@ createRoot(document.getElementById("root")!).render(
               element={<Products />}
             />
 
-             <Route
+            <Route
               path="add-products"
               element={<AddProducts />}
             />
 
-             <Route
+            <Route
               path="categories"
               element={<Categories />}
             />
@@ -181,14 +191,54 @@ createRoot(document.getElementById("root")!).render(
               element={<AddCategories />}
             />
 
-             <Route
+            <Route
               path="sub-categories"
               element={<SubCategories />}
             />
 
-             <Route
+            <Route
               path="add-sub-categories"
               element={<AddSubCategories />}
+            />
+
+            <Route
+              path="orders"
+              element={<Orders />}
+            />
+            <Route
+              path="customers"
+              element={<Customers />}
+            />
+
+              <Route
+              path="reviews"
+              element={<Reviews />}
+            />
+            <Route
+              path="coupons"
+              element={<Coupons />}
+            />
+            <Route
+              path="inventory"
+              element={<Inventory />}
+            />
+            <Route
+              path="analytics"
+              element={<Analytics />}
+            />
+
+             <Route
+              path="settings"
+              element={<Settings />}
+            />
+             <Route
+              path="order-details"
+              element={<OrderDetails />}
+            />
+
+             <Route
+              path="add-coupons"
+              element={<AddCoupons />}
             />
 
           </Route>
