@@ -1,3 +1,4 @@
+
 import { createRoot } from "react-dom/client";
 import "./index.css";
 
@@ -50,10 +51,10 @@ import AddCoupons from "./pages/admin/forms/AddCoupons.tsx";
 const AdminRoute = () => {
   const user = useAuth((state) => state.user) as
     | {
-      roles?: {
-        name: string;
-      }[];
-    }
+        roles?: {
+          name: string;
+        }[];
+      }
     | null;
 
   if (!user) {
@@ -78,10 +79,10 @@ const AdminRoute = () => {
 const UserRoute = () => {
   const user = useAuth((state) => state.user) as
     | {
-      roles?: {
-        name: string;
-      }[];
-    }
+        roles?: {
+          name: string;
+        }[];
+      }
     | null;
 
   if (!user) {
@@ -106,13 +107,11 @@ const UserRoute = () => {
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <Routes>
-
       {/* =================================================
           ROOT
       ================================================= */}
 
       <Route path="/" element={<RootLayout />}>
-
         {/* Home */}
         <Route index element={<App />} />
 
@@ -132,19 +131,14 @@ createRoot(document.getElementById("root")!).render(
         ================================================= */}
 
         <Route element={<UserRoute />}>
-
           {/* User Dashboard */}
           <Route path="dashboard" element={<UserLayout />}>
-
-            {/* /dashboard */}
             <Route index element={<UserHome />} />
 
-            {/* /dashboard/profile */}
             <Route
               path="profile"
               element={<UserProfile />}
             />
-
           </Route>
 
           {/* Product Details */}
@@ -152,7 +146,6 @@ createRoot(document.getElementById("root")!).render(
             path="user/product/:id"
             element={<ProductDetails />}
           />
-
         </Route>
 
         {/* =================================================
@@ -160,37 +153,44 @@ createRoot(document.getElementById("root")!).render(
         ================================================= */}
 
         <Route path="admin" element={<AdminRoute />}>
-
           {/* Admin Layout */}
           <Route element={<AdminLayout />}>
-
-            {/* /admin */}
+            {/* Admin Dashboard */}
             <Route
               index
               element={<AdminDashboard />}
             />
-            
 
-            {/* /admin/products */}
+            {/* Products List */}
             <Route
               path="products"
               element={<Products />}
             />
 
+            {/* Add Product */}
             <Route
               path="add-products"
               element={<AddProducts />}
             />
 
+            {/* Edit Product */}
+            <Route
+              path="add-products/:id"
+              element={<AddProducts />}
+            />
+
+            {/* Categories */}
             <Route
               path="categories"
               element={<Categories />}
             />
+
             <Route
               path="add-categories"
               element={<AddCategories />}
             />
 
+            {/* Sub Categories */}
             <Route
               path="sub-categories"
               element={<SubCategories />}
@@ -201,48 +201,58 @@ createRoot(document.getElementById("root")!).render(
               element={<AddSubCategories />}
             />
 
+            {/* Orders */}
             <Route
               path="orders"
               element={<Orders />}
             />
+
             <Route
               path="customers"
               element={<Customers />}
             />
 
-              <Route
+            {/* Reviews */}
+            <Route
               path="reviews"
               element={<Reviews />}
             />
+
+            {/* Coupons */}
             <Route
               path="coupons"
               element={<Coupons />}
             />
+
+            <Route
+              path="add-coupons"
+              element={<AddCoupons />}
+            />
+
+            {/* Inventory */}
             <Route
               path="inventory"
               element={<Inventory />}
             />
+
+            {/* Analytics */}
             <Route
               path="analytics"
               element={<Analytics />}
             />
 
-             <Route
+            {/* Settings */}
+            <Route
               path="settings"
               element={<Settings />}
             />
-             <Route
+
+            {/* Order Details */}
+            <Route
               path="order-details"
               element={<OrderDetails />}
             />
-
-             <Route
-              path="add-coupons"
-              element={<AddCoupons />}
-            />
-
           </Route>
-
         </Route>
 
         {/* =================================================
@@ -258,9 +268,7 @@ createRoot(document.getElementById("root")!).render(
           path="oauth/failure"
           element={<OAuthFailure />}
         />
-
       </Route>
-
     </Routes>
   </BrowserRouter>
 );
