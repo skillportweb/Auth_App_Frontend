@@ -39,7 +39,7 @@ import Customers from "./pages/admin/Customers.tsx";
 import Reviews from "./pages/admin/Reviews.tsx";
 import Coupons from "./pages/admin/Coupons.tsx";
 import Inventory from "./pages/admin/Inventory.tsx";
-import Analytics from "./pages/admin/Analytics.jsx";
+import Analytics from "./pages/admin/Analytics.tsx";
 import Settings from "./pages/admin/Settings.tsx";
 import OrderDetails from "./pages/admin/OrderDetails.tsx";
 import AddCoupons from "./pages/admin/forms/AddCoupons.tsx";

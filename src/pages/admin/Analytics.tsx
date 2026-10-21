@@ -1,3 +1,4 @@
+
 import { useMemo, useState } from "react";
 import {
   TrendingUp,
@@ -15,10 +16,53 @@ import {
 } from "lucide-react";
 
 /* =========================================================
+   ANALYTICS TYPES
+========================================================= */
+
+type AnalyticsPeriod = "7 Days" | "30 Days" | "90 Days" | "1 Year";
+
+type ChartPoint = {
+  day: string;
+  value: number;
+};
+
+type AnalyticsPeriodData = {
+  revenue: number;
+  orders: number;
+  customers: number;
+  averageOrder: number;
+  revenueGrowth: number;
+  orderGrowth: number;
+  customerGrowth: number;
+  averageGrowth: number;
+  chart: ChartPoint[];
+};
+
+type ProductData = {
+  name: string;
+  category: string;
+  sales: number;
+  revenue: number;
+};
+
+type CategoryData = {
+  name: string;
+  sales: number;
+  revenue: number;
+};
+
+type OrderStatusData = {
+  name: string;
+  value: number;
+  icon: typeof CheckCircle2;
+  style: string;
+};
+
+/* =========================================================
    ANALYTICS DATA
 ========================================================= */
 
-const analyticsData = {
+const analyticsData: Record<AnalyticsPeriod, AnalyticsPeriodData> = {
   "7 Days": {
     revenue: 184500,
     orders: 186,
@@ -102,7 +146,7 @@ const analyticsData = {
    TOP PRODUCTS
 ========================================================= */
 
-const topProducts = [
+const topProducts: ProductData[] = [
   {
     name: "Premium Almonds",
     category: "Dry Fruits",
@@ -139,7 +183,7 @@ const topProducts = [
    CATEGORY DATA
 ========================================================= */
 
-const categoryData = [
+const categoryData: CategoryData[] = [
   {
     name: "Dry Fruits",
     sales: 48,
@@ -166,7 +210,7 @@ const categoryData = [
    ORDER STATUS
 ========================================================= */
 
-const orderStatus = [
+const orderStatus: OrderStatusData[] = [
   {
     name: "Delivered",
     value: 486,
@@ -197,7 +241,7 @@ const orderStatus = [
    HELPERS
 ========================================================= */
 
-function formatCurrency(value) {
+function formatCurrency(value: number): string {
   return `₹${value.toLocaleString("en-IN")}`;
 }
 
@@ -206,10 +250,10 @@ function formatCurrency(value) {
 ========================================================= */
 
 export default function Analytics() {
-  const [period, setPeriod] = useState("30 Days");
+  const [period, setPeriod] = useState<AnalyticsPeriod>("30 Days");
   const [showPeriod, setShowPeriod] = useState(false);
 
-  const periods = [
+  const periods: AnalyticsPeriod[] = [
     "7 Days",
     "30 Days",
     "90 Days",
@@ -219,18 +263,14 @@ export default function Analytics() {
   const data = analyticsData[period];
 
   const maxChartValue = useMemo(() => {
-    return Math.max(
-      ...data.chart.map((item) => item.value)
-    );
+    return Math.max(...data.chart.map((item) => item.value));
   }, [data.chart]);
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-[#08090b] dark:text-white">
       <div className="mx-auto max-w-[1600px]">
 
-        {/* =================================================
-            HEADER
-        ================================================= */}
+        {/* HEADER */}
 
         <div className="mb-7 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
           <div>
@@ -254,12 +294,11 @@ export default function Analytics() {
           </div>
 
           {/* PERIOD FILTER */}
+
           <div className="relative">
             <button
               type="button"
-              onClick={() =>
-                setShowPeriod((prev) => !prev)
-              }
+              onClick={() => setShowPeriod((prev) => !prev)}
               className="flex h-11 items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 text-[12px] font-medium text-gray-700 shadow-sm transition-colors hover:border-orange-300 hover:text-orange-500 dark:border-white/10 dark:bg-[#0d1017] dark:text-gray-300"
             >
               <CalendarDays size={16} />
@@ -291,13 +330,12 @@ export default function Analytics() {
           </div>
         </div>
 
-        {/* =================================================
-            STATS
-        ================================================= */}
+        {/* STATS */}
 
         <div className="mb-7 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
 
           {/* REVENUE */}
+
           <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-[#0d1017]">
             <div className="flex items-center justify-between gap-3">
               <div className="min-w-0">
@@ -322,6 +360,7 @@ export default function Analytics() {
           </div>
 
           {/* ORDERS */}
+
           <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-[#0d1017]">
             <div className="flex items-center justify-between gap-3">
               <div className="min-w-0">
@@ -346,6 +385,7 @@ export default function Analytics() {
           </div>
 
           {/* CUSTOMERS */}
+
           <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-[#0d1017]">
             <div className="flex items-center justify-between gap-3">
               <div className="min-w-0">
@@ -370,6 +410,7 @@ export default function Analytics() {
           </div>
 
           {/* AVERAGE ORDER */}
+
           <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-[#0d1017]">
             <div className="flex items-center justify-between gap-3">
               <div className="min-w-0">
@@ -394,15 +435,13 @@ export default function Analytics() {
           </div>
         </div>
 
-        {/* =================================================
-            REVENUE + ORDER STATUS
-        ================================================= */}
+        {/* REVENUE + ORDER STATUS */}
 
         <div className="mb-7 grid grid-cols-1 gap-5 xl:grid-cols-[2fr_1fr]">
 
           {/* REVENUE CHART */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-[#0d1017]">
 
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-[#0d1017]">
             <div className="mb-7 flex items-center justify-between gap-3">
               <div>
                 <h2 className="text-[16px] font-bold">
@@ -410,8 +449,7 @@ export default function Analytics() {
                 </h2>
 
                 <p className="mt-1 text-[10px] text-gray-500 dark:text-gray-400">
-                  Revenue performance for{" "}
-                  {period.toLowerCase()}.
+                  Revenue performance for {period.toLowerCase()}.
                 </p>
               </div>
 
@@ -421,10 +459,10 @@ export default function Analytics() {
             </div>
 
             {/* CHART */}
+
             <div className="flex h-[280px] items-end gap-3 sm:gap-5">
               {data.chart.map((item) => {
-                const height =
-                  (item.value / maxChartValue) * 100;
+                const height = (item.value / maxChartValue) * 100;
 
                 return (
                   <div
@@ -434,18 +472,17 @@ export default function Analytics() {
                     <div className="group relative flex h-full w-full items-end justify-center">
 
                       {/* VALUE */}
+
                       <div className="absolute -top-1 z-10 rounded-md bg-[#11151d] px-2 py-1 text-[9px] font-medium text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
                         {formatCurrency(item.value)}
                       </div>
 
                       {/* BAR */}
+
                       <div
                         className="w-full max-w-[55px] rounded-t-xl bg-gradient-to-t from-orange-500 to-orange-400 transition-all duration-500 hover:from-orange-600 hover:to-orange-500"
                         style={{
-                          height: `${Math.max(
-                            height,
-                            8
-                          )}%`,
+                          height: `${Math.max(height, 8)}%`,
                         }}
                       />
                     </div>
@@ -460,8 +497,8 @@ export default function Analytics() {
           </div>
 
           {/* ORDER STATUS */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-[#0d1017]">
 
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-[#0d1017]">
             <div className="mb-6">
               <h2 className="text-[16px] font-bold">
                 Order Status
@@ -509,11 +546,7 @@ export default function Analytics() {
 
                 <span className="text-[13px] font-bold">
                   {orderStatus
-                    .reduce(
-                      (total, item) =>
-                        total + item.value,
-                      0
-                    )
+                    .reduce((total, item) => total + item.value, 0)
                     .toLocaleString("en-IN")}
                 </span>
               </div>
@@ -521,15 +554,13 @@ export default function Analytics() {
           </div>
         </div>
 
-        {/* =================================================
-            TOP PRODUCTS + CATEGORY
-        ================================================= */}
+        {/* TOP PRODUCTS + CATEGORY */}
 
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1.5fr_1fr]">
 
           {/* TOP PRODUCTS */}
-          <div className="rounded-2xl border border-gray-200 bg-white dark:border-white/10 dark:bg-[#0d1017]">
 
+          <div className="rounded-2xl border border-gray-200 bg-white dark:border-white/10 dark:bg-[#0d1017]">
             <div className="border-b border-gray-200 px-5 py-5 dark:border-white/10">
               <h2 className="text-[16px] font-bold">
                 Top Products
@@ -547,28 +578,31 @@ export default function Analytics() {
                   className="flex items-center gap-4 px-5 py-4"
                 >
                   {/* RANK */}
+
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-orange-500/10 text-[11px] font-bold text-orange-500">
                     #{index + 1}
                   </div>
 
                   {/* PRODUCT ICON */}
+
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-100 text-gray-500 dark:bg-white/5 dark:text-gray-400">
                     <Package size={18} />
                   </div>
 
                   {/* INFO */}
+
                   <div className="min-w-0 flex-1">
                     <h3 className="truncate text-[12px] font-semibold">
                       {product.name}
                     </h3>
 
                     <p className="mt-1 text-[10px] text-gray-500">
-                      {product.category} •{" "}
-                      {product.sales} units sold
+                      {product.category} • {product.sales} units sold
                     </p>
                   </div>
 
                   {/* REVENUE */}
+
                   <div className="text-right">
                     <p className="whitespace-nowrap text-[12px] font-bold">
                       {formatCurrency(product.revenue)}
@@ -584,8 +618,8 @@ export default function Analytics() {
           </div>
 
           {/* CATEGORY PERFORMANCE */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-[#0d1017]">
 
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-[#0d1017]">
             <div className="mb-6">
               <h2 className="text-[16px] font-bold">
                 Category Performance
@@ -599,7 +633,6 @@ export default function Analytics() {
             <div className="space-y-6">
               {categoryData.map((category) => (
                 <div key={category.name}>
-
                   <div className="mb-2 flex items-center justify-between">
                     <span className="text-[12px] font-medium">
                       {category.name}
@@ -633,6 +666,7 @@ export default function Analytics() {
             </div>
 
             {/* INSIGHT */}
+
             <div className="mt-7 rounded-xl border border-orange-500/10 bg-orange-500/5 p-4">
               <div className="flex items-start gap-3">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-orange-500/10 text-orange-500">
@@ -645,8 +679,8 @@ export default function Analytics() {
                   </p>
 
                   <p className="mt-1 text-[10px] leading-5 text-gray-500 dark:text-gray-400">
-                    Dry Fruits is currently your strongest
-                    category with the highest sales contribution.
+                    Dry Fruits is currently your strongest category with
+                    the highest sales contribution.
                   </p>
                 </div>
               </div>

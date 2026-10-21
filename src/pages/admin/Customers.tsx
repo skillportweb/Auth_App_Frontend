@@ -182,10 +182,6 @@ export default function Customers() {
     (customer) => customer.status === "Active"
   ).length;
 
-  const inactiveCustomers = customers.filter(
-    (customer) => customer.status === "Inactive"
-  ).length;
-
   const newCustomers = customers.filter((customer) => {
     const joined = new Date(customer.joinedDate);
     const today = new Date("07 Oct 2026");

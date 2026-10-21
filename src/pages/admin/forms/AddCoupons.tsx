@@ -8,7 +8,6 @@ import {
   IndianRupee,
   CalendarDays,
   Users,
-  ShoppingCart,
   CircleDollarSign,
   RotateCcw,
 } from "lucide-react";
