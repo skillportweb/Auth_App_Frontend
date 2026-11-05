@@ -114,17 +114,15 @@ const cardVariant: Variants = {
 function FuturisticAuthHome() {
   return (
     <main className="min-h-screen overflow-hidden bg-white text-gray-900 transition-colors duration-300 dark:bg-[#08090b] dark:text-white">
-
       {/* ================================================= */}
       {/* ================= BACKGROUND ===================== */}
       {/* ================================================= */}
 
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-
-        {/* Purple Glow */}
+        {/* Orange Glow */}
 
         <motion.div
-          className="absolute left-[5%] top-[10%] h-80 w-80 rounded-full bg-purple-500/5 blur-[140px] dark:bg-purple-600/10"
+          className="absolute left-[5%] top-[10%] h-80 w-80 rounded-full bg-orange-500/5 blur-[140px] dark:bg-orange-600/10"
           animate={{
             x: [0, 40, 0],
             y: [0, 30, 0],
@@ -137,10 +135,10 @@ function FuturisticAuthHome() {
           }}
         />
 
-        {/* Blue Glow */}
+        {/* Red Glow */}
 
         <motion.div
-          className="absolute right-[5%] top-[35%] h-96 w-96 rounded-full bg-blue-500/5 blur-[150px] dark:bg-blue-600/10"
+          className="absolute right-[5%] top-[35%] h-96 w-96 rounded-full bg-red-500/5 blur-[150px] dark:bg-red-600/10"
           animate={{
             x: [0, -40, 0],
             y: [0, 35, 0],
@@ -153,10 +151,10 @@ function FuturisticAuthHome() {
           }}
         />
 
-        {/* Violet Glow */}
+        {/* Amber Glow */}
 
         <motion.div
-          className="absolute bottom-[5%] left-[40%] h-80 w-80 rounded-full bg-violet-500/5 blur-[140px] dark:bg-violet-600/10"
+          className="absolute bottom-[5%] left-[40%] h-80 w-80 rounded-full bg-amber-500/5 blur-[140px] dark:bg-amber-600/10"
           animate={{
             x: [0, 30, 0],
             y: [0, -20, 0],
@@ -168,7 +166,6 @@ function FuturisticAuthHome() {
             ease: "easeInOut",
           }}
         />
-
       </div>
 
       {/* ================================================= */}
@@ -176,7 +173,6 @@ function FuturisticAuthHome() {
       {/* ================================================= */}
 
       <section className="relative flex min-h-[calc(100vh-76px)] items-center overflow-hidden">
-
         {/* Grid Background */}
 
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.05] dark:opacity-[0.06]">
@@ -195,7 +191,7 @@ function FuturisticAuthHome() {
         {/* Center Glow */}
 
         <motion.div
-          className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/5 blur-[150px] dark:bg-purple-600/10"
+          className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/5 blur-[150px] dark:bg-orange-600/10"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.4, 0.7, 0.4],
@@ -210,25 +206,22 @@ function FuturisticAuthHome() {
         {/* Container */}
 
         <div className="container mx-auto px-4 py-24 sm:px-6 lg:px-8">
-
           <motion.div
             className="mx-auto max-w-5xl text-center"
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
           >
-
             {/* Badge */}
 
             <motion.div
               variants={fadeDown}
-              className="mb-8 inline-flex items-center gap-2 rounded-full border border-purple-200 bg-purple-50 px-4 py-2 text-sm text-purple-600 backdrop-blur dark:border-purple-500/20 dark:bg-purple-500/5 dark:text-purple-300"
+              className="mb-8 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-sm text-orange-600 backdrop-blur dark:border-orange-500/20 dark:bg-orange-500/5 dark:text-orange-300"
               whileHover={{
                 scale: 1.05,
-                borderColor: "rgba(168,85,247,0.5)",
+                borderColor: "rgba(249,115,22,0.5)",
               }}
             >
-
               <motion.div
                 animate={{
                   rotate: [0, 15, -15, 0],
@@ -244,7 +237,6 @@ function FuturisticAuthHome() {
               </motion.div>
 
               <span>Next Generation Authentication</span>
-
             </motion.div>
 
             {/* Heading */}
@@ -253,7 +245,6 @@ function FuturisticAuthHome() {
               variants={fadeUp}
               className="text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
             >
-
               Secure.
               <span className="text-gray-400 dark:text-gray-500">
                 {" "}
@@ -263,7 +254,7 @@ function FuturisticAuthHome() {
               <br />
 
               <motion.span
-                className="inline-block bg-gradient-to-r from-gray-900 via-purple-600 to-blue-600 bg-clip-text text-transparent dark:from-white dark:via-purple-300 dark:to-blue-400"
+                className="inline-block bg-gradient-to-r from-gray-900 via-orange-600 to-red-600 bg-clip-text text-transparent dark:from-white dark:via-orange-300 dark:to-red-400"
                 animate={{
                   backgroundPosition: [
                     "0% 50%",
@@ -282,7 +273,6 @@ function FuturisticAuthHome() {
               >
                 Futuristic.
               </motion.span>
-
             </motion.h1>
 
             {/* Description */}
@@ -302,7 +292,6 @@ function FuturisticAuthHome() {
               variants={fadeUp}
               className="mt-10 flex flex-wrap justify-center gap-4"
             >
-
               {/* Primary Button */}
 
               <motion.div
@@ -343,7 +332,6 @@ function FuturisticAuthHome() {
                   Learn More
                 </Button>
               </motion.div>
-
             </motion.div>
 
             {/* Trust Points */}
@@ -356,9 +344,7 @@ function FuturisticAuthHome() {
               <TrustItem text="Easy integration" />
               <TrustItem text="Modern stack" />
             </motion.div>
-
           </motion.div>
-
         </div>
       </section>
 
@@ -370,9 +356,7 @@ function FuturisticAuthHome() {
         id="features"
         className="border-y border-gray-200 bg-gray-50/70 py-24 dark:border-white/5 dark:bg-white/[0.015]"
       >
-
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-
           <SectionHeader
             label="Powerful Features"
             title={
@@ -400,7 +384,6 @@ function FuturisticAuthHome() {
               amount: 0.2,
             }}
           >
-
             <AnimatedFeatureCard
               icon={<ShieldCheck />}
               title="Secure Authentication"
@@ -424,9 +407,7 @@ function FuturisticAuthHome() {
               title="Fast & Reliable"
               description="A lightweight authentication flow focused on speed and reliability."
             />
-
           </motion.div>
-
         </div>
       </section>
 
@@ -435,11 +416,8 @@ function FuturisticAuthHome() {
       {/* ================================================= */}
 
       <section className="bg-white py-24 dark:bg-[#08090b]">
-
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-
           <div className="grid items-center gap-14 lg:grid-cols-2">
-
             {/* Left */}
 
             <motion.div
@@ -451,8 +429,7 @@ function FuturisticAuthHome() {
               }}
               variants={fadeLeft}
             >
-
-              <p className="mb-3 text-sm uppercase tracking-[0.25em] text-purple-600 dark:text-purple-400">
+              <p className="mb-3 text-sm uppercase tracking-[0.25em] text-orange-600 dark:text-orange-400">
                 Authentication
               </p>
 
@@ -460,7 +437,7 @@ function FuturisticAuthHome() {
                 One platform.
                 <br />
 
-                <span className="text-purple-600 dark:text-purple-400">
+                <span className="text-orange-600 dark:text-orange-400">
                   Multiple ways to authenticate.
                 </span>
               </h2>
@@ -472,14 +449,11 @@ function FuturisticAuthHome() {
               </p>
 
               <div className="mt-8 space-y-4">
-
                 <CheckItem text="Email & Password Authentication" />
                 <CheckItem text="OAuth 2.0 Authentication" />
                 <CheckItem text="JWT Based Authorization" />
                 <CheckItem text="Protected Application Routes" />
-
               </div>
-
             </motion.div>
 
             {/* Right */}
@@ -494,11 +468,10 @@ function FuturisticAuthHome() {
               }}
               variants={fadeRight}
             >
-
               {/* Glow */}
 
               <motion.div
-                className="absolute -inset-8 rounded-full bg-purple-500/5 blur-[100px] dark:bg-purple-600/10"
+                className="absolute -inset-8 rounded-full bg-orange-500/5 blur-[100px] dark:bg-orange-600/10"
                 animate={{
                   scale: [1, 1.15, 1],
                   opacity: [0.4, 0.7, 0.4],
@@ -514,7 +487,6 @@ function FuturisticAuthHome() {
                 className="relative grid grid-cols-2 gap-4"
                 variants={staggerContainer}
               >
-
                 <AnimatedAuthMethodCard
                   icon={<MailIcon />}
                   title="Email"
@@ -538,13 +510,9 @@ function FuturisticAuthHome() {
                   title="Protected"
                   description="Secure access"
                 />
-
               </motion.div>
-
             </motion.div>
-
           </div>
-
         </div>
       </section>
 
@@ -553,15 +521,13 @@ function FuturisticAuthHome() {
       {/* ================================================= */}
 
       <section className="border-y border-gray-200 bg-gray-50/70 py-24 dark:border-white/5 dark:bg-white/[0.015]">
-
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-
           <SectionHeader
             label="How It Works"
             title={
               <>
                 Authentication made
-                <span className="text-purple-600 dark:text-purple-400">
+                <span className="text-orange-600 dark:text-orange-400">
                   {" "}
                   simple.
                 </span>
@@ -582,7 +548,6 @@ function FuturisticAuthHome() {
               amount: 0.2,
             }}
           >
-
             <AnimatedStep
               number="01"
               icon={<UserCheck />}
@@ -610,9 +575,7 @@ function FuturisticAuthHome() {
               title="Access Application"
               description="Access protected resources securely after authentication."
             />
-
           </motion.div>
-
         </div>
       </section>
 
@@ -621,9 +584,7 @@ function FuturisticAuthHome() {
       {/* ================================================= */}
 
       <section className="bg-white py-24 dark:bg-[#08090b]">
-
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-
           <motion.div
             className="relative overflow-hidden rounded-3xl border border-gray-200 bg-gray-50 p-8 md:p-14 dark:border-white/10 dark:bg-[#0d1017]"
             initial={{
@@ -645,11 +606,10 @@ function FuturisticAuthHome() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-
             {/* Glow */}
 
             <motion.div
-              className="pointer-events-none absolute right-0 top-0 h-80 w-80 rounded-full bg-purple-500/5 blur-[120px] dark:bg-purple-600/10"
+              className="pointer-events-none absolute right-0 top-0 h-80 w-80 rounded-full bg-orange-500/5 blur-[120px] dark:bg-orange-600/10"
               animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.4, 0.7, 0.4],
@@ -662,7 +622,6 @@ function FuturisticAuthHome() {
             />
 
             <div className="relative grid items-center gap-14 lg:grid-cols-2">
-
               {/* Left */}
 
               <motion.div
@@ -674,22 +633,21 @@ function FuturisticAuthHome() {
                 }}
                 variants={fadeLeft}
               >
-
                 <motion.div
-                  className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-purple-200 bg-purple-50 dark:border-purple-500/20 dark:bg-purple-500/10"
+                  className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-orange-200 bg-orange-50 dark:border-orange-500/20 dark:bg-orange-500/10"
                   whileHover={{
                     scale: 1.1,
                     rotate: 5,
                   }}
                 >
-                  <ShieldCheck className="h-7 w-7 text-purple-600 dark:text-purple-400" />
+                  <ShieldCheck className="h-7 w-7 text-orange-600 dark:text-orange-400" />
                 </motion.div>
 
                 <h2 className="text-4xl font-bold text-gray-900 sm:text-5xl dark:text-white">
                   Security isn't
                   <br />
 
-                  <span className="text-purple-600 dark:text-purple-400">
+                  <span className="text-orange-600 dark:text-orange-400">
                     an option.
                   </span>
                 </h2>
@@ -699,7 +657,6 @@ function FuturisticAuthHome() {
                   foundation using modern security technologies and
                   well-defined authentication flows.
                 </p>
-
               </motion.div>
 
               {/* Right */}
@@ -714,7 +671,6 @@ function FuturisticAuthHome() {
                   amount: 0.2,
                 }}
               >
-
                 <AnimatedSecurityCard
                   title="JWT Authentication"
                   description="Stateless token based security"
@@ -734,13 +690,9 @@ function FuturisticAuthHome() {
                   title="Protected Routes"
                   description="Secure application resources"
                 />
-
               </motion.div>
-
             </div>
-
           </motion.div>
-
         </div>
       </section>
 
@@ -749,9 +701,7 @@ function FuturisticAuthHome() {
       {/* ================================================= */}
 
       <section className="border-y border-gray-200 bg-gray-50/70 py-20 dark:border-white/5 dark:bg-transparent">
-
         <div className="container mx-auto px-4 text-center sm:px-6 lg:px-8">
-
           <SectionHeader
             label="Built With"
             title={<>Modern technology stack</>}
@@ -768,7 +718,6 @@ function FuturisticAuthHome() {
               amount: 0.2,
             }}
           >
-
             {[
               "React",
               "TypeScript",
@@ -787,14 +736,12 @@ function FuturisticAuthHome() {
                   y: -5,
                   scale: 1.04,
                 }}
-                className="cursor-default rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm text-gray-600 transition-colors hover:border-purple-300 hover:bg-purple-50 hover:text-purple-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400 dark:hover:border-purple-500/40 dark:hover:bg-purple-500/[0.06] dark:hover:text-white"
+                className="cursor-default rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm text-gray-600 transition-colors hover:border-orange-300 hover:bg-orange-50 hover:text-orange-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400 dark:hover:border-orange-500/40 dark:hover:bg-orange-500/[0.06] dark:hover:text-white"
               >
                 {technology}
               </motion.div>
             ))}
-
           </motion.div>
-
         </div>
       </section>
 
@@ -803,11 +750,9 @@ function FuturisticAuthHome() {
       {/* ================================================= */}
 
       <section className="bg-white px-4 py-24 sm:px-6 lg:px-8 dark:bg-[#08090b]">
-
         <div className="container mx-auto">
-
           <motion.div
-            className="relative overflow-hidden rounded-3xl border border-purple-200 bg-gradient-to-br from-purple-50 via-white to-blue-50 px-6 py-16 text-center dark:border-purple-500/20 dark:from-purple-950/40 dark:via-[#0d1017] dark:to-blue-950/30 md:px-12"
+            className="relative overflow-hidden rounded-3xl border border-orange-200 bg-gradient-to-br from-orange-50 via-white to-red-50 px-6 py-16 text-center dark:border-orange-500/20 dark:from-orange-950/40 dark:via-[#0d1017] dark:to-red-950/30 md:px-12"
             initial={{
               opacity: 0,
               y: 50,
@@ -825,11 +770,10 @@ function FuturisticAuthHome() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-
             {/* Glow */}
 
             <motion.div
-              className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/5 blur-[120px] dark:bg-purple-600/10"
+              className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/5 blur-[120px] dark:bg-orange-600/10"
               animate={{
                 scale: [1, 1.25, 1],
                 opacity: [0.4, 0.8, 0.4],
@@ -850,7 +794,6 @@ function FuturisticAuthHome() {
               }}
               variants={staggerContainer}
             >
-
               {/* Icon */}
 
               <motion.div variants={fadeUp}>
@@ -865,7 +808,7 @@ function FuturisticAuthHome() {
                     ease: "easeInOut",
                   }}
                 >
-                  <Sparkles className="mx-auto mb-6 h-8 w-8 text-purple-600 dark:text-purple-400" />
+                  <Sparkles className="mx-auto mb-6 h-8 w-8 text-orange-600 dark:text-orange-400" />
                 </motion.div>
               </motion.div>
 
@@ -910,11 +853,8 @@ function FuturisticAuthHome() {
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
               </motion.div>
-
             </motion.div>
-
           </motion.div>
-
         </div>
       </section>
 
@@ -923,7 +863,6 @@ function FuturisticAuthHome() {
       {/* ================================================= */}
 
       <footer className="border-t border-gray-200 bg-white py-10 dark:border-white/5 dark:bg-[#08090b]">
-
         <motion.div
           className="container mx-auto flex flex-col gap-5 px-4 text-sm text-gray-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8"
           initial={{
@@ -939,9 +878,7 @@ function FuturisticAuthHome() {
             duration: 0.6,
           }}
         >
-
           <div>
-
             <span className="font-semibold text-gray-900 dark:text-white">
               Auth App
             </span>
@@ -949,11 +886,9 @@ function FuturisticAuthHome() {
             <span className="ml-2">
               Secure authentication for modern applications.
             </span>
-
           </div>
 
           <div className="flex gap-6">
-
             <motion.span
               whileHover={{
                 y: -2,
@@ -980,13 +915,9 @@ function FuturisticAuthHome() {
             >
               Documentation
             </motion.span>
-
           </div>
-
         </motion.div>
-
       </footer>
-
     </main>
   );
 }
@@ -1019,8 +950,7 @@ function SectionHeader({
       }}
       variants={fadeUp}
     >
-
-      <p className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-purple-600 dark:text-purple-400">
+      <p className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-orange-600 dark:text-orange-400">
         {label}
       </p>
 
@@ -1031,7 +961,6 @@ function SectionHeader({
       <p className="mt-5 text-gray-600 dark:text-gray-400">
         {description}
       </p>
-
     </motion.div>
   );
 }
@@ -1081,13 +1010,10 @@ function AnimatedFeatureCard({
         scale: 1.02,
       }}
     >
-
-      <Card className="group h-full border-gray-200 bg-white transition-colors duration-300 hover:border-purple-300 hover:bg-purple-50/50 dark:border-white/10 dark:bg-white/[0.025] dark:hover:border-purple-500/30 dark:hover:bg-purple-500/[0.04]">
-
+      <Card className="group h-full border-gray-200 bg-white transition-colors duration-300 hover:border-orange-300 hover:bg-orange-50/50 dark:border-white/10 dark:bg-white/[0.025] dark:hover:border-orange-500/30 dark:hover:bg-orange-500/[0.04]">
         <CardContent className="p-6">
-
           <motion.div
-            className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600 transition-colors group-hover:bg-purple-100 dark:bg-purple-500/10 dark:text-purple-400 dark:group-hover:bg-purple-500/20"
+            className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-orange-600 transition-colors group-hover:bg-orange-100 dark:bg-orange-500/10 dark:text-orange-400 dark:group-hover:bg-orange-500/20"
             whileHover={{
               scale: 1.1,
               rotate: 5,
@@ -1103,11 +1029,8 @@ function AnimatedFeatureCard({
           <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-500">
             {description}
           </p>
-
         </CardContent>
-
       </Card>
-
     </motion.div>
   );
 }
@@ -1142,7 +1065,6 @@ function CheckItem({
         x: 5,
       }}
     >
-
       <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-50 dark:bg-emerald-500/10">
         <Check className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
       </div>
@@ -1150,7 +1072,6 @@ function CheckItem({
       <span className="text-sm text-gray-700 dark:text-gray-300">
         {text}
       </span>
-
     </motion.div>
   );
 }
@@ -1175,11 +1096,10 @@ function AnimatedAuthMethodCard({
         y: -7,
         scale: 1.03,
       }}
-      className="group rounded-2xl border border-gray-200 bg-gray-50 p-6 transition-colors duration-300 hover:border-purple-300 hover:bg-purple-50/50 dark:border-white/10 dark:bg-white/[0.025] dark:hover:border-purple-500/30"
+      className="group rounded-2xl border border-gray-200 bg-gray-50 p-6 transition-colors duration-300 hover:border-orange-300 hover:bg-orange-50/50 dark:border-white/10 dark:bg-white/[0.025] dark:hover:border-orange-500/30"
     >
-
       <motion.div
-        className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100 text-gray-600 transition-colors group-hover:bg-purple-100 group-hover:text-purple-600 dark:bg-white/5 dark:text-gray-300 dark:group-hover:bg-purple-500/10 dark:group-hover:text-purple-400"
+        className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100 text-gray-600 transition-colors group-hover:bg-orange-100 group-hover:text-orange-600 dark:bg-white/5 dark:text-gray-300 dark:group-hover:bg-orange-500/10 dark:group-hover:text-orange-400"
         whileHover={{
           scale: 1.1,
           rotate: 5,
@@ -1195,7 +1115,6 @@ function AnimatedAuthMethodCard({
       <p className="mt-1 text-sm text-gray-500 dark:text-gray-500">
         {description}
       </p>
-
     </motion.div>
   );
 }
@@ -1223,11 +1142,9 @@ function AnimatedStep({
       }}
       className="relative"
     >
-
       <div className="mb-6 flex items-center gap-4">
-
         <motion.div
-          className="flex h-12 w-12 items-center justify-center rounded-full border border-purple-200 bg-purple-50 text-purple-600 dark:border-purple-500/30 dark:bg-purple-500/10 dark:text-purple-400"
+          className="flex h-12 w-12 items-center justify-center rounded-full border border-orange-200 bg-orange-50 text-orange-600 dark:border-orange-500/30 dark:bg-orange-500/10 dark:text-orange-400"
           whileHover={{
             scale: 1.1,
             rotate: 8,
@@ -1239,7 +1156,6 @@ function AnimatedStep({
         <span className="text-xs font-bold tracking-widest text-gray-400 dark:text-gray-600">
           {number}
         </span>
-
       </div>
 
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -1249,7 +1165,6 @@ function AnimatedStep({
       <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-500">
         {description}
       </p>
-
     </motion.div>
   );
 }
@@ -1272,9 +1187,8 @@ function AnimatedSecurityCard({
         y: -5,
         scale: 1.02,
       }}
-      className="rounded-2xl border border-gray-200 bg-white p-5 transition-colors duration-300 hover:border-purple-300 dark:border-white/10 dark:bg-black/20 dark:hover:border-purple-500/20"
+      className="rounded-2xl border border-gray-200 bg-white p-5 transition-colors duration-300 hover:border-orange-300 dark:border-white/10 dark:bg-black/20 dark:hover:border-orange-500/20"
     >
-
       <motion.div
         className="mb-4 flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-500/10"
         whileHover={{
@@ -1291,7 +1205,6 @@ function AnimatedSecurityCard({
       <p className="mt-2 text-xs leading-5 text-gray-600 dark:text-gray-500">
         {description}
       </p>
-
     </motion.div>
   );
 }

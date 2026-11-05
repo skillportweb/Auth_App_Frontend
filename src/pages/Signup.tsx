@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
   Eye,
@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
 import { toast } from "react-hot-toast";
-
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
 import type RegisterData from "../model/RegisterData";
@@ -24,50 +23,28 @@ import OAuth2Button from "../components/OAuth2Button";
 /* ================================================= */
 
 const containerVariants: Variants = {
-  hidden: {
-    opacity: 0,
-  },
-
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.1 },
   },
 };
 
 const fadeLeft: Variants = {
-  hidden: {
-    opacity: 0,
-    x: -45,
-  },
-
+  hidden: { opacity: 0, x: -45 },
   visible: {
     opacity: 1,
     x: 0,
-
-    transition: {
-      duration: 0.65,
-      ease: [0.22, 1, 0.36, 1],
-    },
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
 const fadeRight: Variants = {
-  hidden: {
-    opacity: 0,
-    x: 45,
-  },
-
+  hidden: { opacity: 0, x: 45 },
   visible: {
     opacity: 1,
     x: 0,
-
-    transition: {
-      duration: 0.65,
-      ease: [0.22, 1, 0.36, 1],
-    },
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -106,74 +83,66 @@ function Signup() {
   /* ================= FORM SUBMIT ==================== */
   /* ================================================= */
 
- const handleFormSubmit = async (
-  event: React.FormEvent<HTMLFormElement>
-) => {
-  event.preventDefault();
+  const handleFormSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
 
-  if (data.name.trim() === "") {
-    toast.error("Name is required");
-    return;
-  }
+    if (data.name.trim() === "") {
+      toast.error("Name is required");
+      return;
+    }
 
-  if (data.email.trim() === "") {
-    toast.error("Email is required");
-    return;
-  }
+    if (data.email.trim() === "") {
+      toast.error("Email is required");
+      return;
+    }
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!emailRegex.test(data.email.trim())) {
-    toast.error("Please enter a valid email");
-    return;
-  }
+    if (!emailRegex.test(data.email.trim())) {
+      toast.error("Please enter a valid email");
+      return;
+    }
 
-  if (data.password.trim() === "") {
-    toast.error("Password is required");
-    return;
-  }
+    if (data.password.trim() === "") {
+      toast.error("Password is required");
+      return;
+    }
 
-  if (data.password.length < 6) {
-    toast.error("Password must be at least 6 characters");
-    return;
-  }
+    if (data.password.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
+    }
 
-  setLoading(true);
+    setLoading(true);
 
-  const loadingToast = toast.loading(
-    "Creating your account..."
-  );
+    const loadingToast = toast.loading("Creating your account...");
 
-  try {
-    const result = await registerUser(data);
+    try {
+      const result = await registerUser(data);
 
-    console.log(
-      "User registered successfully:",
-      result
-    );
+      console.log("User registered successfully:", result);
 
-    toast.dismiss(loadingToast);
-    toast.success("Account created successfully!");
-    setData({
-      name: "",
-      email: "",
-      password: "",
-    });
-    navigate("/login");
-  } catch (error) {
-    console.error(
-      "Error during signup:",
-      error
-    );
+      toast.dismiss(loadingToast);
+      toast.success("Account created successfully!");
 
-    toast.dismiss(loadingToast);
-    toast.error(
-      "Failed to create account. Please try again."
-    );
-  } finally {
-    setLoading(false);
-  }
-};
+      setData({
+        name: "",
+        email: "",
+        password: "",
+      });
+
+      navigate("/login");
+    } catch (error) {
+      console.error("Error during signup:", error);
+
+      toast.dismiss(loadingToast);
+      toast.error("Failed to create account. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <main
@@ -192,7 +161,6 @@ function Signup() {
       {/* ================= BACKGROUND ================= */}
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-
         {/* Grid */}
 
         <div
@@ -215,7 +183,7 @@ function Signup() {
           />
         </div>
 
-        {/* Purple Glow */}
+        {/* Orange Glow */}
 
         <motion.div
           className="
@@ -225,9 +193,9 @@ function Signup() {
             h-[400px]
             w-[400px]
             rounded-full
-            bg-purple-500/10
+            bg-orange-500/10
             blur-[130px]
-            dark:bg-purple-600/15
+            dark:bg-orange-600/15
           "
           animate={{
             x: [0, 40, 0],
@@ -241,7 +209,7 @@ function Signup() {
           }}
         />
 
-        {/* Blue Glow */}
+        {/* Red Glow */}
 
         <motion.div
           className="
@@ -251,9 +219,9 @@ function Signup() {
             h-[400px]
             w-[400px]
             rounded-full
-            bg-blue-500/10
+            bg-red-500/10
             blur-[130px]
-            dark:bg-blue-600/15
+            dark:bg-red-600/15
           "
           animate={{
             x: [0, -40, 0],
@@ -279,9 +247,9 @@ function Signup() {
             -translate-x-1/2
             -translate-y-1/2
             rounded-full
-            bg-purple-500/5
+            bg-orange-500/5
             blur-[120px]
-            dark:bg-purple-500/10
+            dark:bg-orange-500/10
           "
           animate={{
             scale: [1, 1.2, 1],
@@ -312,7 +280,6 @@ function Signup() {
         "
       >
         <div className="grid w-full items-center gap-12 lg:grid-cols-2">
-
           {/* ================= LEFT ================= */}
 
           <motion.div
@@ -321,7 +288,6 @@ function Signup() {
             variants={containerVariants}
             className="hidden lg:block"
           >
-
             {/* Badge */}
 
             <motion.div
@@ -333,15 +299,15 @@ function Signup() {
                 gap-2
                 rounded-full
                 border
-                border-purple-200
-                bg-purple-50
+                border-orange-200
+                bg-orange-50
                 px-4
                 py-2
                 text-sm
-                text-purple-600
-                dark:border-purple-500/20
-                dark:bg-purple-500/5
-                dark:text-purple-300
+                text-orange-600
+                dark:border-orange-500/20
+                dark:bg-orange-500/5
+                dark:text-orange-300
               "
             >
               <motion.div
@@ -381,14 +347,14 @@ function Signup() {
                 className="
                   inline-block
                   bg-gradient-to-r
-                  from-purple-600
-                  via-violet-500
-                  to-blue-600
+                  from-orange-600
+                  via-amber-500
+                  to-red-600
                   bg-clip-text
                   text-transparent
-                  dark:from-purple-300
-                  dark:via-violet-400
-                  dark:to-blue-400
+                  dark:from-orange-300
+                  dark:via-amber-400
+                  dark:to-red-400
                 "
                 animate={{
                   backgroundPosition: [
@@ -521,9 +487,9 @@ function Signup() {
                   h-40
                   w-40
                   rounded-full
-                  bg-purple-500/10
+                  bg-orange-500/10
                   blur-[70px]
-                  dark:bg-purple-500/15
+                  dark:bg-orange-500/15
                 "
                 animate={{
                   scale: [1, 1.2, 1],
@@ -536,7 +502,6 @@ function Signup() {
               />
 
               <div className="relative">
-
                 {/* Icon */}
 
                 <motion.div
@@ -560,10 +525,10 @@ function Signup() {
                     items-center
                     justify-center
                     rounded-2xl
-                    bg-purple-50
-                    text-purple-600
-                    dark:bg-purple-500/10
-                    dark:text-purple-400
+                    bg-orange-50
+                    text-orange-600
+                    dark:bg-orange-500/10
+                    dark:text-orange-400
                   "
                 >
                   <User className="h-6 w-6" />
@@ -601,7 +566,6 @@ function Signup() {
                 {/* DIVIDER */}
 
                 <div className="my-7 flex items-center gap-3">
-
                   <div
                     className="
                       h-px
@@ -638,11 +602,9 @@ function Signup() {
                   onSubmit={handleFormSubmit}
                   className="space-y-5"
                 >
-
                   {/* NAME */}
 
                   <div className="space-y-2">
-
                     <Label
                       htmlFor="name"
                       className="
@@ -656,7 +618,6 @@ function Signup() {
                     </Label>
 
                     <div className="relative">
-
                       <User
                         className="
                           pointer-events-none
@@ -693,14 +654,14 @@ function Signup() {
                           transition-all
                           duration-200
                           placeholder:text-gray-400
-                          focus:border-purple-500
+                          focus:border-orange-500
                           focus:ring-2
-                          focus:ring-purple-500/10
+                          focus:ring-orange-500/10
                           dark:border-white/10
                           dark:bg-white/[0.03]
                           dark:text-white
                           dark:placeholder:text-gray-600
-                          dark:focus:border-purple-500
+                          dark:focus:border-orange-500
                         "
                       />
                     </div>
@@ -709,7 +670,6 @@ function Signup() {
                   {/* EMAIL */}
 
                   <div className="space-y-2">
-
                     <Label
                       htmlFor="email"
                       className="
@@ -723,7 +683,6 @@ function Signup() {
                     </Label>
 
                     <div className="relative">
-
                       <Mail
                         className="
                           pointer-events-none
@@ -760,14 +719,14 @@ function Signup() {
                           transition-all
                           duration-200
                           placeholder:text-gray-400
-                          focus:border-purple-500
+                          focus:border-orange-500
                           focus:ring-2
-                          focus:ring-purple-500/10
+                          focus:ring-orange-500/10
                           dark:border-white/10
                           dark:bg-white/[0.03]
                           dark:text-white
                           dark:placeholder:text-gray-600
-                          dark:focus:border-purple-500
+                          dark:focus:border-orange-500
                         "
                       />
                     </div>
@@ -776,7 +735,6 @@ function Signup() {
                   {/* PASSWORD */}
 
                   <div className="space-y-2">
-
                     <Label
                       htmlFor="password"
                       className="
@@ -790,7 +748,6 @@ function Signup() {
                     </Label>
 
                     <div className="relative">
-
                       <LockKeyhole
                         className="
                           pointer-events-none
@@ -809,11 +766,7 @@ function Signup() {
                         name="password"
                         value={data.password}
                         onChange={handleInputChange}
-                        type={
-                          showPassword
-                            ? "text"
-                            : "password"
-                        }
+                        type={showPassword ? "text" : "password"}
                         placeholder="Create a password"
                         autoComplete="new-password"
                         className="
@@ -831,23 +784,21 @@ function Signup() {
                           transition-all
                           duration-200
                           placeholder:text-gray-400
-                          focus:border-purple-500
+                          focus:border-orange-500
                           focus:ring-2
-                          focus:ring-purple-500/10
+                          focus:ring-orange-500/10
                           dark:border-white/10
                           dark:bg-white/[0.03]
                           dark:text-white
                           dark:placeholder:text-gray-600
-                          dark:focus:border-purple-500
+                          dark:focus:border-orange-500
                         "
                       />
 
                       <button
                         type="button"
                         onClick={() =>
-                          setShowPassword(
-                            (prev) => !prev
-                          )
+                          setShowPassword((prev) => !prev)
                         }
                         className="
                           absolute
@@ -859,9 +810,7 @@ function Signup() {
                           dark:hover:text-white
                         "
                         aria-label={
-                          showPassword
-                            ? "Hide password"
-                            : "Show password"
+                          showPassword ? "Hide password" : "Show password"
                         }
                       >
                         {showPassword ? (
@@ -876,7 +825,6 @@ function Signup() {
                   {/* TERMS */}
 
                   <div className="flex items-start gap-2">
-
                     <input
                       id="terms"
                       type="checkbox"
@@ -887,7 +835,7 @@ function Signup() {
                         cursor-pointer
                         rounded
                         border-gray-300
-                        accent-purple-600
+                        accent-orange-600
                         dark:border-gray-700
                       "
                     />
@@ -903,11 +851,11 @@ function Signup() {
                       "
                     >
                       I agree to the{" "}
-                      <span className="font-medium text-purple-600 dark:text-purple-400">
+                      <span className="font-medium text-orange-600 dark:text-orange-400">
                         Terms of Service
                       </span>{" "}
                       and{" "}
-                      <span className="font-medium text-purple-600 dark:text-purple-400">
+                      <span className="font-medium text-orange-600 dark:text-orange-400">
                         Privacy Policy
                       </span>
                     </Label>
@@ -981,10 +929,10 @@ function Signup() {
                     to="/login"
                     className="
                       font-medium
-                      text-purple-600
-                      hover:text-purple-700
-                      dark:text-purple-400
-                      dark:hover:text-purple-300
+                      text-orange-600
+                      hover:text-orange-700
+                      dark:text-orange-400
+                      dark:hover:text-orange-300
                     "
                   >
                     Sign in

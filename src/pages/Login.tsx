@@ -29,7 +29,6 @@ const containerVariants: Variants = {
 
   visible: {
     opacity: 1,
-
     transition: {
       staggerChildren: 0.1,
     },
@@ -45,7 +44,6 @@ const fadeLeft: Variants = {
   visible: {
     opacity: 1,
     x: 0,
-
     transition: {
       duration: 0.65,
       ease: [0.22, 1, 0.36, 1],
@@ -62,7 +60,6 @@ const fadeRight: Variants = {
   visible: {
     opacity: 1,
     x: 0,
-
     transition: {
       duration: 0.65,
       ease: [0.22, 1, 0.36, 1],
@@ -85,7 +82,9 @@ function Login() {
   const navigate = useNavigate();
   const login = useAuth((state) => state.login);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const { name, value } = event.target;
 
     setLoginData((prevLoginData) => ({
@@ -94,7 +93,9 @@ function Login() {
     }));
   };
 
-  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
 
     const email = loginData.email.trim();
@@ -115,12 +116,13 @@ function Login() {
 
       toast.success("Login successful !");
 
-      // login ke baad store se user nikalo (store change karne ki zaroorat nahi)
+      // Login ke baad store se user nikalo.
       const user = useAuth.getState().user as
         | { roles?: { name: string }[] }
         | null;
 
-      const roles: string[] = user?.roles?.map((role) => role.name) ?? [];
+      const roles: string[] =
+        user?.roles?.map((role) => role.name) ?? [];
 
       if (roles.includes("ROLE_ADMIN")) {
         navigate("/admin");
@@ -139,13 +141,10 @@ function Login() {
         relative
         min-h-[calc(100vh-56px)]
         overflow-hidden
-
         bg-white
         text-gray-900
-
         transition-colors
         duration-300
-
         dark:bg-[#08090b]
         dark:text-white
       "
@@ -161,9 +160,7 @@ function Login() {
           className="
             absolute
             inset-0
-
             opacity-[0.035]
-
             dark:opacity-[0.045]
           "
         >
@@ -179,7 +176,7 @@ function Login() {
           />
         </div>
 
-        {/* Purple Glow */}
+        {/* Orange Glow */}
 
         <motion.div
           className="
@@ -189,10 +186,9 @@ function Login() {
             h-[400px]
             w-[400px]
             rounded-full
-            bg-purple-500/10
+            bg-orange-500/10
             blur-[130px]
-
-            dark:bg-purple-600/15
+            dark:bg-orange-600/15
           "
           animate={{
             x: [0, 40, 0],
@@ -206,7 +202,7 @@ function Login() {
           }}
         />
 
-        {/* Blue Glow */}
+        {/* Red Glow */}
 
         <motion.div
           className="
@@ -216,10 +212,9 @@ function Login() {
             h-[400px]
             w-[400px]
             rounded-full
-            bg-blue-500/10
+            bg-red-500/10
             blur-[130px]
-
-            dark:bg-blue-600/15
+            dark:bg-red-600/15
           "
           animate={{
             x: [0, -40, 0],
@@ -245,10 +240,9 @@ function Login() {
             -translate-x-1/2
             -translate-y-1/2
             rounded-full
-            bg-purple-500/5
+            bg-orange-500/5
             blur-[120px]
-
-            dark:bg-purple-500/10
+            dark:bg-orange-500/10
           "
           animate={{
             scale: [1, 1.2, 1],
@@ -274,10 +268,8 @@ function Login() {
           min-h-[calc(100vh-56px)]
           max-w-6xl
           items-center
-
           px-4
           py-10
-
           sm:px-6
           lg:px-8
         "
@@ -303,20 +295,16 @@ function Login() {
                 items-center
                 gap-2
                 rounded-full
-
                 border
-                border-purple-200
-                bg-purple-50
-
+                border-orange-200
+                bg-orange-50
                 px-4
                 py-2
-
                 text-sm
-                text-purple-600
-
-                dark:border-purple-500/20
-                dark:bg-purple-500/5
-                dark:text-purple-300
+                text-orange-600
+                dark:border-orange-500/20
+                dark:bg-orange-500/5
+                dark:text-orange-300
               "
             >
               <motion.div
@@ -346,28 +334,31 @@ function Login() {
                 font-bold
                 leading-[1.05]
                 tracking-tight
-
                 xl:text-6xl
               "
             >
               Welcome
               <br />
+
               <motion.span
                 className="
                   inline-block
                   bg-gradient-to-r
-                  from-purple-600
-                  via-violet-500
-                  to-blue-600
+                  from-orange-600
+                  via-amber-500
+                  to-red-600
                   bg-clip-text
                   text-transparent
-
-                  dark:from-purple-300
-                  dark:via-violet-400
-                  dark:to-blue-400
+                  dark:from-orange-300
+                  dark:via-amber-400
+                  dark:to-red-400
                 "
                 animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  backgroundPosition: [
+                    "0% 50%",
+                    "100% 50%",
+                    "0% 50%",
+                  ],
                 }}
                 transition={{
                   duration: 5,
@@ -391,9 +382,7 @@ function Login() {
                 max-w-lg
                 text-lg
                 leading-8
-
                 text-gray-600
-
                 dark:text-gray-400
               "
             >
@@ -419,11 +408,9 @@ function Login() {
                   items-center
                   justify-center
                   rounded-xl
-
                   border
                   border-emerald-200
                   bg-emerald-50
-
                   dark:border-emerald-500/20
                   dark:bg-emerald-500/10
                 "
@@ -432,9 +419,7 @@ function Login() {
                   className="
                     h-5
                     w-5
-
                     text-emerald-600
-
                     dark:text-emerald-400
                   "
                 />
@@ -445,9 +430,7 @@ function Login() {
                   className="
                     text-sm
                     font-medium
-
                     text-gray-900
-
                     dark:text-white
                   "
                 >
@@ -478,19 +461,13 @@ function Login() {
                 relative
                 overflow-hidden
                 rounded-3xl
-
                 border
                 border-gray-200
-
                 bg-white
-
                 p-6
-
                 shadow-xl
                 shadow-gray-200/40
-
                 sm:p-8
-
                 dark:border-white/10
                 dark:bg-[#0d1017]
                 dark:shadow-black/30
@@ -513,10 +490,9 @@ function Login() {
                   h-40
                   w-40
                   rounded-full
-                  bg-purple-500/10
+                  bg-orange-500/10
                   blur-[70px]
-
-                  dark:bg-purple-500/15
+                  dark:bg-orange-500/15
                 "
                 animate={{
                   scale: [1, 1.2, 1],
@@ -556,12 +532,10 @@ function Login() {
                     items-center
                     justify-center
                     rounded-2xl
-
-                    bg-purple-50
-                    text-purple-600
-
-                    dark:bg-purple-500/10
-                    dark:text-purple-400
+                    bg-orange-50
+                    text-orange-600
+                    dark:bg-orange-500/10
+                    dark:text-orange-400
                   "
                 >
                   <LockKeyhole className="h-6 w-6" />
@@ -574,9 +548,7 @@ function Login() {
                     text-3xl
                     font-bold
                     tracking-tight
-
                     text-gray-900
-
                     dark:text-white
                   "
                 >
@@ -587,9 +559,7 @@ function Login() {
                   className="
                     mt-2
                     text-sm
-
                     text-gray-500
-
                     dark:text-gray-400
                   "
                 >
@@ -609,9 +579,7 @@ function Login() {
                     className="
                       h-px
                       flex-1
-
                       bg-gray-200
-
                       dark:bg-white/10
                     "
                   />
@@ -621,7 +589,6 @@ function Login() {
                       text-[10px]
                       font-medium
                       tracking-wider
-
                       text-gray-400
                     "
                   >
@@ -632,9 +599,7 @@ function Login() {
                     className="
                       h-px
                       flex-1
-
                       bg-gray-200
-
                       dark:bg-white/10
                     "
                   />
@@ -651,9 +616,7 @@ function Login() {
                       className="
                         text-sm
                         font-medium
-
                         text-gray-700
-
                         dark:text-gray-300
                       "
                     >
@@ -670,7 +633,6 @@ function Login() {
                           h-4
                           w-4
                           -translate-y-1/2
-
                           text-gray-400
                         "
                       />
@@ -687,34 +649,25 @@ function Login() {
                           h-11
                           w-full
                           rounded-xl
-
                           border
                           border-gray-200
-
                           bg-gray-50
-
                           pl-10
                           pr-4
-
                           text-sm
                           text-gray-900
-
                           outline-none
-
                           transition-all
                           duration-200
-
                           placeholder:text-gray-400
-
-                          focus:border-purple-500
+                          focus:border-orange-500
                           focus:ring-2
-                          focus:ring-purple-500/10
-
+                          focus:ring-orange-500/10
                           dark:border-white/10
                           dark:bg-white/[0.03]
                           dark:text-white
                           dark:placeholder:text-gray-600
-                          dark:focus:border-purple-500
+                          dark:focus:border-orange-500
                         "
                       />
                     </div>
@@ -729,9 +682,7 @@ function Login() {
                         className="
                           text-sm
                           font-medium
-
                           text-gray-700
-
                           dark:text-gray-300
                         "
                       >
@@ -743,13 +694,10 @@ function Login() {
                         className="
                           text-xs
                           font-medium
-
-                          text-purple-600
-
-                          hover:text-purple-700
-
-                          dark:text-purple-400
-                          dark:hover:text-purple-300
+                          text-orange-600
+                          hover:text-orange-700
+                          dark:text-orange-400
+                          dark:hover:text-orange-300
                         "
                       >
                         Forgot password?
@@ -766,7 +714,6 @@ function Login() {
                           h-4
                           w-4
                           -translate-y-1/2
-
                           text-gray-400
                         "
                       />
@@ -783,34 +730,25 @@ function Login() {
                           h-11
                           w-full
                           rounded-xl
-
                           border
                           border-gray-200
-
                           bg-gray-50
-
                           pl-10
                           pr-11
-
                           text-sm
                           text-gray-900
-
                           outline-none
-
                           transition-all
                           duration-200
-
                           placeholder:text-gray-400
-
-                          focus:border-purple-500
+                          focus:border-orange-500
                           focus:ring-2
-                          focus:ring-purple-500/10
-
+                          focus:ring-orange-500/10
                           dark:border-white/10
                           dark:bg-white/[0.03]
                           dark:text-white
                           dark:placeholder:text-gray-600
-                          dark:focus:border-purple-500
+                          dark:focus:border-orange-500
                         "
                       />
 
@@ -824,13 +762,9 @@ function Login() {
                           right-3
                           top-1/2
                           -translate-y-1/2
-
                           text-gray-400
-
                           transition-colors
-
                           hover:text-gray-700
-
                           dark:hover:text-white
                         "
                         aria-label={
@@ -858,9 +792,7 @@ function Login() {
                         cursor-pointer
                         rounded
                         border-gray-300
-
-                        accent-purple-600
-
+                        accent-orange-600
                         dark:border-gray-700
                       "
                     />
@@ -870,9 +802,7 @@ function Login() {
                       className="
                         cursor-pointer
                         text-xs
-
                         text-gray-500
-
                         dark:text-gray-400
                       "
                     >
@@ -898,21 +828,18 @@ function Login() {
                         h-11
                         w-full
                         rounded-xl
-
                         bg-gray-900
                         text-white
-
                         shadow-lg
                         shadow-gray-900/10
-
                         hover:bg-gray-800
-
                         dark:bg-white
                         dark:text-black
                         dark:hover:bg-gray-200
                       "
                     >
                       Sign in
+
                       <ArrowRight
                         className="
                           ml-2
@@ -920,7 +847,6 @@ function Login() {
                           w-4
                           transition-transform
                           duration-300
-
                           group-hover:translate-x-1
                         "
                       />
@@ -935,24 +861,20 @@ function Login() {
                     mt-7
                     text-center
                     text-sm
-
                     text-gray-500
-
                     dark:text-gray-400
                   "
                 >
                   Don't have an account?{" "}
+
                   <Link
                     to="/signup"
                     className="
                       font-medium
-
-                      text-purple-600
-
-                      hover:text-purple-700
-
-                      dark:text-purple-400
-                      dark:hover:text-purple-300
+                      text-orange-600
+                      hover:text-orange-700
+                      dark:text-orange-400
+                      dark:hover:text-orange-300
                     "
                   >
                     Create account
@@ -982,7 +904,6 @@ function Login() {
                 items-center
                 justify-center
                 gap-2
-
                 text-xs
                 text-gray-400
               "
