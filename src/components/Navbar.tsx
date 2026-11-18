@@ -22,11 +22,10 @@ const NavItem = ({
             <motion.span
                 whileHover={{ y: -1 }}
                 transition={{ duration: 0.2 }}
-                className={`relative cursor-pointer text-sm transition-colors ${
-                    isActive
+                className={`relative cursor-pointer text-sm transition-colors ${isActive
                         ? "font-semibold text-orange-600 dark:text-orange-400"
                         : "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                }`}
+                    }`}
             >
                 {label}
 
@@ -162,7 +161,7 @@ const Navbar = () => {
                         whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.97 }}
                         transition={{ duration: 0.2 }}
-                        className="flex h-14 w-28 items-center justify-center sm:w-32"
+                        className="flex h-14 w-[170px] items-center justify-center"
                     >
                         <motion.img
                             src={logo}
@@ -259,10 +258,9 @@ const Navbar = () => {
                                         ring-offset-2 ring-offset-white
                                         transition-all
                                         dark:ring-offset-gray-950
-                                        ${
-                                            menuOpen
-                                                ? "ring-orange-400"
-                                                : "ring-transparent"
+                                        ${menuOpen
+                                            ? "ring-orange-400"
+                                            : "ring-transparent"
                                         }
                                     `}
                                 >

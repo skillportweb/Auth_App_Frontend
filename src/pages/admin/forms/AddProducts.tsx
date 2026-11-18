@@ -356,9 +356,28 @@ export default function AddProducts() {
     setLoading(true);
 
     try {
-      const uploadedImages = await Promise.all(
-        selectedFiles.map((file) => uploadProductImage(file))
-      );
+      // const uploadedImages = await Promise.all(
+      //   selectedFiles.map((file) => uploadProductImage(file))
+      // );
+
+      // ADDED: Upload selected images and extract actual image URLs
+const uploadResponses = await Promise.all(
+    selectedFiles.map((file) => uploadProductImage(file))
+);
+
+const uploadedImages = uploadResponses.map((response: any) => {
+    const imageUrl =
+        response?.data?.imageUrl ??
+        response?.data?.data?.imageUrl ??
+        response?.imageUrl ??
+        response;
+
+    if (typeof imageUrl !== "string") {
+        throw new Error("Image upload failed: Invalid image URL");
+    }
+
+    return imageUrl;
+});
 
       const existingImages = images.filter(
         (image) => !image.startsWith("blob:")
